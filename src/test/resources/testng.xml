@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll">
+
+    <test name="subdivision">
+        <classes>
+            <class name="sberoad.tests.CatalogSubdivision" />
+        </classes>
+    </test>
+
+    <test name="archive">
+        <classes>
+            <class name="sberoad.tests.CatalogArchive" />
+        </classes>
+    </test>
+
+    <test name="businessUnit">
+        <classes>
+            <class name="sberoad.tests.CatalogBuisnessUnit" />
+        </classes>
+    </test>
+
+    <test name="findDocumentHelper">
+        <classes>
+            <class name="sberoad.tests.FindDocumentHelper" />
+        </classes>
+    </test>
+
+    <test name="dailyBinding">
+        <classes>
+            <class name="sberoad.tests.DailyBinding" />
+        </classes>
+    </test>
+</suite>
