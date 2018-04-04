@@ -2,20 +2,21 @@ package sberoad.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sberoad.appmanager.HelperBase;
-import sberoad.appmanager.Random;
+import sberoad.appmanager.Randoms;
 
 public class CatalogRegistryType extends TestBase{
 
     @Test
     public void createNewNote() throws Exception {
-        application.getNavigation().startPage();
+       application.getNavigation().startPage();
         application.getRegistryTypeHelper().navigateToRegistryType();
         application.getRegistryTypeHelper().newRegistryType();
 
-        Random random = new Random();
-        String randomKod = String.valueOf(random.randomchar());
+        Randoms random = new Randoms();
+        String randomKod = String.valueOf(random.toString());
 
+        //////////////////////////////////////////////////
+        System.out.println(randomKod);
         application.getRegistryTypeHelper().fillRegistryType(randomKod,"test");
 
 

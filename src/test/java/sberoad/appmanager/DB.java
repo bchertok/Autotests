@@ -1,44 +1,75 @@
 package sberoad.appmanager;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class DB {
-    private static String url = "";
-    private static String user = "";
-    private static String password = "";
+import java.util.Properties;
+import java.util.Random;
 
-    public static void main(String[] args) {
+public class DB {
+    private static Properties properties = getProperties();
+    private static String url = properties.getProperty("url");
+    private static String user = properties.getProperty("username");
+    private static String password = properties.getProperty("password");
+
+    public static Properties getProperties() {
+        Properties properties = new Properties();
+        try {
+            properties.load(DB.class.getClassLoader().getResourceAsStream("db.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
+    }
+//    public static void main (String[] args){}
+
+    public String getRandomValue(String sql, String columnLabel) {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
         try {
             //step1 load the driver class
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
             //step2 create  the connection object
-            Connection con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url, user, password);
 
             //step3 create the statement object
-            Statement stmt = con.createStatement();
+            stmt = con.createStatement();
 
-            //step4 execute query
-            ResultSet rs = stmt.executeQuery("select * from BARCODEINFO");
+            //step4 execute query;   sql- it is parametr for DB table
+            rs = stmt.executeQuery(sql);
             List<String> list = new ArrayList<>();
+
+            //add info from DBto list;  columnLabel - it is parametr for DB column
             while (rs.next()) {
-//                System.out.println(rs.getString("CODE"));
-                list.add(rs.getString("CODE"));
+                list.add(rs.getString(columnLabel));
             }
 
-            list.forEach(System.out::println);
+//      list.forEach(System.out::println);
+//            System.out.println(list.size());
 
-            System.out.println(list.size());
+            Random random = new Random();
+            int num = random.nextInt(list.size());
+//          System.out.println(list.get(num));
 
-            //step5 close the connection object
-            con.close();
+            return list.get(num);
+
 
         } catch (Exception e) {
             System.out.println(e);
-        }
+        } finally {
+            try {
+                //step5 close the connection object
+                con.close();
+                rs.close();
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
+        }
+        return null;
     }
 }

@@ -3,8 +3,6 @@ package sberoad.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.Random;
-
 public class HelperBase {
     final WebDriver driver;
 
@@ -51,12 +49,25 @@ public class HelperBase {
     }
 
     // текст ошибки если он виден; нужно исправит перехват исключений
-    void preduprezhdeniye (){
+    void preduprezhdeniye(By locator){
     String txt = "не найдено";
-        if (driver.findElement(By.xpath("//div[@id='root']/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div[6]/div[3]")).isDisplayed()) {
-        txt = driver.findElement(By.xpath("//div[@id='root']/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div[6]/div[3]")).getText();
-    }
-        System.out.println(txt);
+        boolean elementPresent = isElementPresent(locator);
+
+      if (elementPresent){
+
+            if
+                    (driver.findElement(locator).isDisplayed()) {
+                txt = driver.findElement(locator).getText();
+            } else {
+                System.out.println("");
+            }
+
+            System.out.println(txt);
+        }
+        else {
+          System.out.println("Element not found");
+      }
+
 }
 
 
