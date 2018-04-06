@@ -25,11 +25,11 @@ public class Subdivisionhelper extends HelperBase{
         type(osb, By.xpath(("//div[4]/div[2]/input")));
         Thread.sleep(2000);
         spisok(index, By.cssSelector("div.Select-control") );
-        type(kod, By.xpath("//div[6]/div[2]/input"));
-        type(name, By.xpath("//div[7]/div[2]/input"));
-        type(shortname, By.xpath("//div[8]/div[2]/input"));
-        type(mail, By.xpath("//div[9]/div[2]/input"));
-        clickByxpath("//div[10]/label");
+        type(kod, By.xpath("//div[7]/div[2]/input"));
+        type(name, By.xpath("//div[8]/div[2]/input"));
+        type(shortname, By.xpath("//div[9]/div[2]/input"));
+        type(mail, By.xpath("//div[10]/div[2]/input"));
+        clickByxpath("//div[11]/label");
     }
 
     public void acceptSubdivision() {

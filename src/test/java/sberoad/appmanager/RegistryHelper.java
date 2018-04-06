@@ -38,15 +38,34 @@ public class RegistryHelper extends HelperBase {
         clickByxpath("//form/div[2]/div");
     }
 
-public void declaineNotyfication(By locator){
+public void noToNotyfication(){
         // если не на все уведомления будет такой локатор то сделать локатор параметром и в helperbase
 
     Actions actions = new Actions(driver);
-    WebElement we = driver.findElement(locator);
+    WebElement we = driver.findElement(By.xpath("//div[3]/button[2]"));
     actions.moveToElement(we);
     actions.click();
     actions.perform();
 }
+    public void yesToNotyfication(){
+        // если не на все уведомления будет такой локатор то сделать локатор параметром и в helperbase
+
+        Actions actions = new Actions(driver);
+        WebElement we = driver.findElement(By.xpath("//div[3]/button"));
+        actions.moveToElement(we);
+        actions.click();
+        actions.perform();
+    }
+
+    public void okeyToNotyfication(){
+        // если не на все уведомления будет такой локатор то сделать локатор параметром и в helperbase
+click(By.cssSelector("div.modal-footer > button.g-button"));
+//        Actions actions = new Actions(driver);
+//        WebElement we = driver.findElement(By.xpath("//div[3]/button"));
+//        actions.moveToElement(we);
+//        actions.click();
+//        actions.perform();
+    }
 
 
     public void backFromRegitry() {

@@ -30,7 +30,7 @@ public class BuisnessUnitHelper extends HelperBase {
 
     public void newBuisnessUnit() throws InterruptedException {
         driver.get("http://sb-oad-test.reksoft.ru/app1/dictionaries/subdivisions");
-        driver.findElement(By.xpath("//div[@id='root']/div/div[2]/div[2]/div[2]/div/div/div/div/a[4]/div")).click();
+        driver.findElement(By.linkText("Бизнес-блоки")).click();
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("a.add-link > span.label")).click();
     }

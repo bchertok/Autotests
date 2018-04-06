@@ -91,7 +91,6 @@ public class DB {
             //step4 execute query;   sql- it is parametr for DB table
             rs = stmt.executeQuery(sql);
             List<String> list = new ArrayList<>();
-
             //add info from DBto list;  columnLabel - it is parametr for DB column
             while (rs.next()) {
                 list.add(rs.getString(columnLabel));

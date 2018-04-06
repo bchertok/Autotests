@@ -31,4 +31,19 @@
             <class name="sberoad.tests.DailyBinding" />
         </classes>
     </test>
+
+    <test name="RegistryAS1">
+        <classes>
+            <class name="sberoad.tests.RegistryAS1" />
+        </classes>
+    </test>
+
+    <test name="RegistryAS2">
+        <classes>
+            <class name="sberoad.tests.RegistryAS2" />
+        </classes>
+    </test>
+
+
 </suite>
+
