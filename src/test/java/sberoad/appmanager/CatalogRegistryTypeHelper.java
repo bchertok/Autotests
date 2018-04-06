@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
 import java.util.Random;
 
 
-public class RegistryTypeHelper extends HelperBase{
+public class CatalogRegistryTypeHelper extends HelperBase{
 
 
-    RegistryTypeHelper(WebDriver driver) {
+    CatalogRegistryTypeHelper(WebDriver driver) {
         super(driver);
 
     }

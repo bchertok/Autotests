@@ -9,15 +9,15 @@ public class CatalogRegistryType extends TestBase{
     @Test
     public void createNewNote() throws Exception {
        application.getNavigation().startPage();
-        application.getRegistryTypeHelper().navigateToRegistryType();
-        application.getRegistryTypeHelper().newRegistryType();
+        application.getcatalogRegistryTypeHelper().navigateToRegistryType();
+        application.getcatalogRegistryTypeHelper().newRegistryType();
 
         Randoms random = new Randoms();
         String randomKod = String.valueOf(random.toString());
 
         //////////////////////////////////////////////////
         System.out.println(randomKod);
-        application.getRegistryTypeHelper().fillRegistryType(randomKod,"test");
+        application.getcatalogRegistryTypeHelper().fillRegistryType(randomKod,"test");
 
 
 

@@ -14,10 +14,10 @@ public class ApplicationManager {
     private Navigation navigation;
     private FindDocumentHelper findDocument;
     private DailyBindingHelper dailyBindingHelper;
-    private NewRegistryHelper newRegistryHelper;
+    private RegistryHelper registryHelper;
     private Subdivisionhelper subdivisionhelper;
     private DocumentsDossierHelper documentsDossierHelper;
-    private RegistryTypeHelper registryTypeHelper;
+    private CatalogRegistryTypeHelper catalogregistryTypeHelper;
     private SwaggerHelper swaggerHelper;
     private HelperBase helperBase;
 
@@ -35,12 +35,11 @@ public class ApplicationManager {
         navigation = new Navigation(driver);
         findDocument = new FindDocumentHelper(driver);
         dailyBindingHelper = new DailyBindingHelper(driver);
-        newRegistryHelper = new NewRegistryHelper(driver);
+        registryHelper = new RegistryHelper(driver);
         documentsDossierHelper = new DocumentsDossierHelper(driver);
-        registryTypeHelper = new RegistryTypeHelper(driver);
+        catalogregistryTypeHelper = new CatalogRegistryTypeHelper(driver);
         swaggerHelper = new SwaggerHelper(driver);
         helperBase = new HelperBase(driver);
-
 
 
 
@@ -50,7 +49,7 @@ public class ApplicationManager {
 
     private void Auth(String login, String password) throws InterruptedException {
 
-        driver.get("http://sb-oad-demo.reksoft.ru/app1/login");
+        driver.get("http://sb-oad-test/app1/login");
         Thread.sleep(500);
         HelperBase ispravit = new HelperBase(driver);
         ispravit.type(login,By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div/div[2]/input"));
@@ -88,13 +87,13 @@ public class ApplicationManager {
 
     public Subdivisionhelper getSubdivisionhelper() {return subdivisionhelper;}
 
-    public NewRegistryHelper getNewRegistryHelper() {
-        return newRegistryHelper;
+    public RegistryHelper getRegistryHelper() {
+        return registryHelper;
     }
 
     public DocumentsDossierHelper getDocumentsDossierHelper() { return documentsDossierHelper;}
 
-    public RegistryTypeHelper getRegistryTypeHelper() {return registryTypeHelper;}
+    public CatalogRegistryTypeHelper getcatalogRegistryTypeHelper() {return catalogregistryTypeHelper;}
 
     public SwaggerHelper getSwaggerHelper(){return swaggerHelper;}
 

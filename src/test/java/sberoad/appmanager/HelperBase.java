@@ -16,9 +16,9 @@ public class HelperBase {
 
     void type(String text, By locator) {
         driver.findElement(locator).click();
-        if (text!=null){
+        if (text != null) {
             String existingtext = driver.findElement(locator).getAttribute("value");
-            if (! existingtext.equals(text)) {
+            if (!existingtext.equals(text)) {
                 driver.findElement(locator).clear();
                 driver.findElement(locator).sendKeys(text);
             }
@@ -27,6 +27,7 @@ public class HelperBase {
     }
 
     void spisok(String text, By locator) {
+        if (text != null) {
         Actions actions = new Actions(driver);
         WebElement we = driver.findElement(locator);
         actions.moveToElement(we);
@@ -34,13 +35,14 @@ public class HelperBase {
         actions.sendKeys(text);
         actions.sendKeys(Keys.ENTER);
         actions.perform();
-    }
+    }}
 
     void click(By locator) {
         driver.findElement(locator).click();
     }
-    String text(By locator){
-       String text =driver.findElement(locator).getText();
+
+    String text(By locator) {
+        String text = driver.findElement(locator).getText();
         return text;
     }
 
@@ -48,12 +50,14 @@ public class HelperBase {
         driver.findElement(By.xpath(xpath)).click();
     }
 
+
     // текст ошибки если он виден; нужно исправит перехват исключений
-    void preduprezhdeniye(By locator){
-    String txt = "не найдено";
+
+    public String getText(By locator) {
+        String txt = "не найдено";
         boolean elementPresent = isElementPresent(locator);
 
-      if (elementPresent){
+        if (elementPresent) {
 
             if
                     (driver.findElement(locator).isDisplayed()) {
@@ -63,15 +67,48 @@ public class HelperBase {
             }
 
             System.out.println(txt);
+            return txt;
+        } else {
+            System.out.println("Element not found");
         }
-        else {
-          System.out.println("Element not found");
-      }
 
-}
+        return txt;
+    }
 
+    public String getTextContent(By locator) {
+        String txt = "не найдено";
+        boolean elementPresent = isElementPresent(locator);
 
-    public boolean isElementPresent(By locator) {
+        if (elementPresent) {
+
+            txt = driver.findElement(locator).getAttribute("textContent");
+
+           // System.out.println(txt);
+            return txt;
+        } else {
+            System.out.println("Element not found");
+        }
+
+        return txt;
+    }
+    public String getTextValue(By locator) {
+        String txt = "не найдено";
+        boolean elementPresent = isElementPresent(locator);
+
+        if (elementPresent) {
+
+            txt = driver.findElement(locator).getAttribute("value");
+
+            // System.out.println(txt);
+            return txt;
+        } else {
+            System.out.println("Element not found");
+        }
+
+        return txt;
+    }
+
+    private boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;
