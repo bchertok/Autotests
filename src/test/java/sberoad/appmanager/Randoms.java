@@ -2,6 +2,7 @@ package sberoad.appmanager;
 
 import java.security.SecureRandom;
 
+
 public class Randoms {
 
 
@@ -15,6 +16,13 @@ public class Randoms {
             sb.append( character.charAt( rnd.nextInt(character.length()) ) );
         return sb.toString();
     }
+    public String randomBarcodeCrash () {
+       int len1= rnd.nextInt(80);
+        StringBuilder sb = new StringBuilder( len1 );
+        for( int i = 0; i < len1; i++ )
+            sb.append( number.charAt( rnd.nextInt(number.length()) ) );
+        return sb.toString();
+    }
 
    public String randomNumber (int len) {
 
@@ -22,6 +30,6 @@ public class Randoms {
         for( int i = 0; i < len; i++ )
             sb.append( number.charAt( rnd.nextInt(number.length()) ) );
         return sb.toString();
-
     }
+
 }

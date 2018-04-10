@@ -29,6 +29,9 @@ public class RegistryHelper extends HelperBase {
         type(registryBarcode, By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input"));
 
     }
+    public void fillObjectBarcode(String text){
+        typeAndEnter(text, By.cssSelector("form.input-group > div.f-element.f-element-text.inline > div.f-control > input.input"));
+    }
 
 
     public void openObjectSearch(){

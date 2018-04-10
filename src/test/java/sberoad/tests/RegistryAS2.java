@@ -33,7 +33,7 @@ public class RegistryAS2 extends TestBase {
             Thread.sleep(300);
             application.getRegistryHelper().noToNotyfication();
             application.getRegistryHelper().noToNotyfication();
-            Thread.sleep(300);
+            Thread.sleep(400);
 
             String fieldForRegistryBarcode = application.getHelperBase().getTextValue(By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input"));
             System.out.println(fieldForRegistryBarcode);
@@ -102,7 +102,7 @@ public class RegistryAS2 extends TestBase {
             Thread.sleep(300);
             String notification = application.getHelperBase().getTextContent(By.cssSelector("div.modal-body"));
             Assert.assertEquals(notification, "Данный штрих-код принадлежит описи. Введите другое значение");
-application.getRegistryHelper().okeyToNotyfication();
+            application.getRegistryHelper().okeyToNotyfication();
             application.getRegistryHelper().okeyToNotyfication();
             Thread.sleep(300);
 
@@ -129,7 +129,7 @@ application.getRegistryHelper().okeyToNotyfication();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит документу. Введите другое значение");
             application.getRegistryHelper().okeyToNotyfication();
             application.getRegistryHelper().okeyToNotyfication();
-            Thread.sleep(300);
+            Thread.sleep(350);
 
         }
     }
@@ -222,7 +222,7 @@ application.getRegistryHelper().okeyToNotyfication();
             application.getRegistryHelper().okeyToNotyfication();
             application.getRegistryHelper().okeyToNotyfication();
             Thread.sleep(300);
+
         }
     }
-
 }

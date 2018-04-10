@@ -23,7 +23,17 @@ public class HelperBase {
                 driver.findElement(locator).sendKeys(text);
             }
         }
-
+    }
+    void typeAndEnter(String text, By locator) {
+        driver.findElement(locator).click();
+        if (text != null) {
+            String existingtext = driver.findElement(locator).getAttribute("value");
+            if (!existingtext.equals(text)) {
+                driver.findElement(locator).clear();
+                driver.findElement(locator).sendKeys(text);
+                driver.findElement(locator).sendKeys(Keys.ENTER);
+            }
+        }
     }
 
     void spisok(String text, By locator) {
