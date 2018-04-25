@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class DocumentsDossierHelper extends HelperBase{
-    DocumentsDossierHelper(WebDriver driver) {
+    public DocumentsDossierHelper(WebDriver driver) {
         super(driver);
     }
 

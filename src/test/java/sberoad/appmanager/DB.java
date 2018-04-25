@@ -95,12 +95,7 @@ public class DB {
             while (rs.next()) {
                 list.add(rs.getString(columnLabel));
             }
-
-    //  list.forEach(System.out::println);
-       //    System.out.println(list.size());
-
             return list;
-
         } catch (Exception e) {
             System.out.println(e);
         } finally {
@@ -112,8 +107,47 @@ public class DB {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
         return null;
     }
+
+    public List<String> toAS5(String sql, String columnLabel, String columnLabe2) {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            //step1 load the driver class
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            //step2 create  the connection object
+            con = DriverManager.getConnection(url, user, password);
+
+            //step3 create the statement object
+            stmt = con.createStatement();
+
+            //step4 execute query;   sql- it is parametr for DB table
+            rs = stmt.executeQuery(sql);
+            List<String> list = new ArrayList<>();
+            //add info from DBto list;  columnLabel - it is parametr for DB column
+            while (rs.next()) {
+                list.add(rs.getString(columnLabel));
+                list.add(rs.getString(columnLabe2));
+
+            }
+            return list;
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                //step5 close the connection object
+                con.close();
+                rs.close();
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 }

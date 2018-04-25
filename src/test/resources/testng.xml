@@ -34,13 +34,13 @@
 
     <test name="RegistryAS1">
         <classes>
-            <class name="sberoad.tests.RegistryAS1" />
+            <class name="sberoad.tests.RegistryTests.RegistryAS1" />
         </classes>
     </test>
 
     <test name="RegistryAS2">
         <classes>
-            <class name="sberoad.tests.RegistryAS2" />
+            <class name="sberoad.tests.RegistryTests.RegistryAS2" />
         </classes>
     </test>
 

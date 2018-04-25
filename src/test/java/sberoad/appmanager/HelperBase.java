@@ -59,6 +59,9 @@ public class HelperBase {
     void clickByxpath(String xpath) {
         driver.findElement(By.xpath(xpath)).click();
     }
+    void clickByCss(String Css) {
+        driver.findElement(By.cssSelector(Css)).click();
+    }
 
 
     // текст ошибки если он виден; нужно исправит перехват исключений

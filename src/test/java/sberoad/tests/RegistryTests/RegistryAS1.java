@@ -1,8 +1,9 @@
-package sberoad.tests;
+package sberoad.tests.RegistryTests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sberoad.tests.TestBase;
 
 public class RegistryAS1 extends TestBase {
     @Test

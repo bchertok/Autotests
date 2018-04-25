@@ -1,6 +1,7 @@
 package sberoad.appmanager;
 
 import java.security.SecureRandom;
+import java.util.Random;
 
 
 public class Randoms {
@@ -30,6 +31,24 @@ public class Randoms {
         for( int i = 0; i < len; i++ )
             sb.append( number.charAt( rnd.nextInt(number.length()) ) );
         return sb.toString();
+    }
+    public String randomDocumentType(){
+        Random rnd = new Random();
+        int i =rnd.nextInt(4);
+        String randomDocumentType=null;
+        if (i == 0){
+            randomDocumentType = "Действующие документы";
+        }
+        if (i == 1){
+            randomDocumentType = "Документы завершенного делопроизводства";
+        }
+        if (i == 2){
+            randomDocumentType = "Сшивы документов дня";
+        }
+        if (i == 3){
+            randomDocumentType = "Прочая корреспонденция";
+        }
+        return randomDocumentType;
     }
 
 }

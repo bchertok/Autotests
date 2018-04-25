@@ -1,9 +1,10 @@
-package sberoad.tests;
+package sberoad.tests.RegistryTests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sberoad.appmanager.DB;
+import sberoad.tests.TestBase;
 
 import java.util.ArrayList;
 import java.util.List;

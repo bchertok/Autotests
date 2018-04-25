@@ -33,6 +33,4 @@ public class ArchiveHelper extends HelperBase {
         click(By.cssSelector("div.p-content"));
         click(By.cssSelector("button.g-button.success"));
     }
-
-
 }
