@@ -132,7 +132,6 @@ public class DB {
             while (rs.next()) {
                 list.add(rs.getString(columnLabel));
                 list.add(rs.getString(columnLabe2));
-
             }
             return list;
         } catch (Exception e) {
