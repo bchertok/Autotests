@@ -24,6 +24,7 @@ public class HelperBase {
             }
         }
     }
+
     void typeAndEnter(String text, By locator) {
         driver.findElement(locator).click();
         if (text != null) {
@@ -38,14 +39,15 @@ public class HelperBase {
 
     void spisok(String text, By locator) {
         if (text != null) {
-        Actions actions = new Actions(driver);
-        WebElement we = driver.findElement(locator);
-        actions.moveToElement(we);
-        actions.click();
-        actions.sendKeys(text);
-        actions.sendKeys(Keys.ENTER);
-        actions.perform();
-    }}
+            Actions actions = new Actions(driver);
+            WebElement we = driver.findElement(locator);
+            actions.moveToElement(we);
+            actions.click();
+            actions.sendKeys(text);
+            actions.sendKeys(Keys.ENTER);
+            actions.perform();
+        }
+    }
 
     void click(By locator) {
         driver.findElement(locator).click();
@@ -59,6 +61,7 @@ public class HelperBase {
     void clickByxpath(String xpath) {
         driver.findElement(By.xpath(xpath)).click();
     }
+
     void clickByCss(String Css) {
         driver.findElement(By.cssSelector(Css)).click();
     }
@@ -78,7 +81,6 @@ public class HelperBase {
             } else {
                 System.out.println("");
             }
-
             System.out.println(txt);
             return txt;
         } else {
@@ -96,7 +98,7 @@ public class HelperBase {
 
             txt = driver.findElement(locator).getAttribute("textContent");
 
-           // System.out.println(txt);
+            // System.out.println(txt);
             return txt;
         } else {
             System.out.println("Element not found");
@@ -104,6 +106,7 @@ public class HelperBase {
 
         return txt;
     }
+
     public String getTextValue(By locator) {
         String txt = "не найдено";
         boolean elementPresent = isElementPresent(locator);

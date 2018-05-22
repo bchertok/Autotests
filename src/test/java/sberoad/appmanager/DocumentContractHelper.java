@@ -5,14 +5,24 @@ import java.util.stream.Collectors;
 
 
 public class DocumentContractHelper {
-    public static List<String> docID() {
+
+    public static List<String> allDocID() {
+        DB db = new DB();
+
+        List<String> allDocID = db.getAllValue("SELECT " +
+                        "DOCNUMBER FROM CONTRACT"
+                , "DOCNUMBER");
+        return allDocID;
+    }
+
+    private static List<String> docID() {
         DB db = new DB();
 
         List<String> docID = db.getAllValue("SELECT " +
                         "uz.DOCNUMBER from DOCUMENT_CONTRACT u \n" +
                         "inner join DOCUMENT ud on u.DOCUMENT_ID=ud.ID\n" +
                         "inner join CONTRACT uz on uz.ID=u.CONTRACT_ID\n" +
-                        "where ud.FORMCODE in (0,3) and ud.STATECODE in (2) and ud.INVENTORY_ID is null"
+                        "where ud.FORMCODE in (0 , 3) and ud.STATECODE in (2) and ud.INVENTORY_ID is null"
                 , "DOCNUMBER");
         return docID;
     }

@@ -10,7 +10,7 @@ public class Navigation extends HelperBase {
     }
 
     public void startPage() {
-        driver.get("http://sb-oad-test/app1/");
+        driver.get("http://sb-oad-demo.reksoft.ru/app1/system_functions");
     }
 
 

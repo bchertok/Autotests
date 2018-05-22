@@ -4,7 +4,8 @@ package sberoad.appmanager;
 public class Sandbox2 {
     public static void main(String[] args) {
         System.out.println("Вообще Все контракты");
-        System.out.println(DocumentContractHelper.docID());
+        System.out.println(DocumentContractHelper.allDocID().size());
+        System.out.println(DocumentContractHelper.allDocID());
         System.out.println("==========================");
         System.out.println("Все контракты с несколькими документами");
         System.out.println(DocumentContractHelper.contractWithManyDoc());

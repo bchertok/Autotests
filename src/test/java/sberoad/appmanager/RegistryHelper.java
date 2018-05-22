@@ -18,7 +18,7 @@ public class RegistryHelper extends HelperBase {
         spisok(subdivisionout, By.cssSelector("div.Select-control"));
         spisok(documentType, By.xpath("//div[3]/div[2]/div/div"));
         type(registryBarcode, By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input"));
-        if (registryBarcode != null) {
+       if (registryBarcode != null) {
             driver.findElement(By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input")).sendKeys(Keys.ENTER);
         }
     }

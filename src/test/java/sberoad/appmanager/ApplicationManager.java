@@ -18,7 +18,6 @@ public class ApplicationManager {
     private Subdivisionhelper subdivisionhelper;
     private DocumentsDossierHelper documentsDossierHelper;
     private CatalogRegistryTypeHelper catalogregistryTypeHelper;
-    private SwaggerHelper swaggerHelper;
     private HelperBase helperBase;
 
     private StringBuffer verificationErrors = new StringBuffer();
@@ -38,7 +37,6 @@ public class ApplicationManager {
         registryHelper = new RegistryHelper(driver);
         documentsDossierHelper = new DocumentsDossierHelper(driver);
         catalogregistryTypeHelper = new CatalogRegistryTypeHelper(driver);
-        swaggerHelper = new SwaggerHelper(driver);
         helperBase = new HelperBase(driver);
 
 
@@ -49,7 +47,7 @@ public class ApplicationManager {
 
     private void Auth(String login, String password) throws InterruptedException {
 
-        driver.get("http://sb-oad-test/app1/login");
+        driver.get("http://sb-oad-demo.reksoft.ru/app1/login");
         Thread.sleep(500);
         HelperBase ispravit = new HelperBase(driver);
         ispravit.type(login,By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div/div[2]/input"));
@@ -94,8 +92,6 @@ public class ApplicationManager {
     public DocumentsDossierHelper getDocumentsDossierHelper() { return documentsDossierHelper;}
 
     public CatalogRegistryTypeHelper getcatalogRegistryTypeHelper() {return catalogregistryTypeHelper;}
-
-    public SwaggerHelper getSwaggerHelper(){return swaggerHelper;}
 
     public HelperBase getHelperBase() { return helperBase; }
 }

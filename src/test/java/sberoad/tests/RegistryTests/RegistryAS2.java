@@ -11,13 +11,13 @@ import java.util.List;
 
 
 public class RegistryAS2 extends TestBase {
-    // введен шк реестра и пользователь выбрал нет
-    @Test
+    // введен шк реестра в статусе 1 или 2 и пользователь выбрал нет
+    @Test(enabled = false)
     public void registryAS2var1() throws InterruptedException {
 
         DB db = new DB();
         List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM REGISTRY", "BARCODE");
+                "BARCODE FROM REGISTRY WHERE STATECODE IN (1,2)", "BARCODE");
         List<String> notificationList = new ArrayList<>();
 
         application.getNavigation().startPage();
@@ -30,7 +30,7 @@ public class RegistryAS2 extends TestBase {
 
             application.getRegistryHelper().fillRegitryform(null, null, s);
             String notification = application.getHelperBase().getTextContent(By.cssSelector("div.modal-body"));
-            Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование/просмотр?");
+            Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование?");
             Thread.sleep(300);
             application.getRegistryHelper().noToNotyfication();
             application.getRegistryHelper().noToNotyfication();
@@ -47,25 +47,29 @@ public class RegistryAS2 extends TestBase {
 
 
     // реестры которые должны быть открыты на просмотр
-    @Test(enabled = false)
+    @Test
     public void registryAS2var2() throws InterruptedException {
         DB db = new DB();
         List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM REGISTRY WHERE STATECODE=03 OR STATECODE=04 OR STATECODE=05 OR STATECODE= 06 OR STATECODE=07", "BARCODE");
+                "BARCODE FROM REGISTRY WHERE STATECODE IN (3,4,5,6,7,8)", "BARCODE");
+         application.getNavigation().startPage();
+        Thread.sleep(100);
+        application.getNavigation().ToNewRegistry();
+        Thread.sleep(500);
 
         for (String s : barcode) {
             System.out.println(s);
-            application.getNavigation().startPage();
-            Thread.sleep(100);
-            application.getNavigation().ToNewRegistry();
-            Thread.sleep(500);
-            application.getRegistryHelper().fillRegitryform(null, null, s);
-            Thread.sleep(300);
-            application.getRegistryHelper().yesToNotyfication();
-            Thread.sleep(50000);
 
-        }
-    }
+            application.getRegistryHelper().fillRegitryform(null, null, s);
+            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.modal-body"));
+            Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на просмотр?");
+            Thread.sleep(300);
+            application.getRegistryHelper().noToNotyfication();
+            application.getRegistryHelper().noToNotyfication();
+            Thread.sleep(400);
+
+
+    }}
 
     // реестры которые должны быть открыты на редактирование
     @Test(enabled = false)
@@ -106,8 +110,6 @@ public class RegistryAS2 extends TestBase {
             application.getRegistryHelper().okeyToNotyfication();
             application.getRegistryHelper().okeyToNotyfication();
             Thread.sleep(300);
-
-
         }
     }
 
@@ -170,12 +172,13 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(500);
         for (String s : barcode) {
             System.out.println(s);
-
             application.getRegistryHelper().fillRegitryform(null, null, s);
             Thread.sleep(300);
             String notification = application.getHelperBase().getTextContent(By.cssSelector("div.modal-body"));
             Assert.assertEquals(notification, "Данный штрих-код принадлежит сущности типа Транспортная единица");
-
+            application.getRegistryHelper().okeyToNotyfication();
+            application.getRegistryHelper().okeyToNotyfication();
+            Thread.sleep(300);
         }
     }
 
@@ -191,7 +194,6 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(500);
         for (String s : barcode) {
             System.out.println(s);
-
             application.getRegistryHelper().fillRegitryform(null, null, s);
             Thread.sleep(300);
             String notification = application.getHelperBase().getTextContent(By.cssSelector("div.modal-body"));
@@ -215,7 +217,6 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(500);
         for (String s : barcode) {
             System.out.println(s);
-
             application.getRegistryHelper().fillRegitryform(null, null, s);
             Thread.sleep(300);
             String notification = application.getHelperBase().getTextContent(By.cssSelector("div.modal-body"));
@@ -223,7 +224,6 @@ public class RegistryAS2 extends TestBase {
             application.getRegistryHelper().okeyToNotyfication();
             application.getRegistryHelper().okeyToNotyfication();
             Thread.sleep(300);
-
         }
     }
 }

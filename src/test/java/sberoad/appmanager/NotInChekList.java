@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class NotInChekList {
-
     public static void main(String[] args) throws IOException {
         Reader reader = new InputStreamReader(new FileInputStream("C:\\Users\\BChertok\\Desktop\\bugs\\jira.txt"),
                 "utf-8");
