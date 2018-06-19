@@ -1,12 +1,9 @@
 package sberoad.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
-import java.util.Random;
 
 public class RegistryHelper extends HelperBase {
 
@@ -14,33 +11,35 @@ public class RegistryHelper extends HelperBase {
         super(driver);
     }
 
-    public void fillRegitryform(String documentType, String subdivisionout, String registryBarcode) {
-        spisok(subdivisionout, By.cssSelector("div.Select-control"));
-        spisok(documentType, By.xpath("//div[3]/div[2]/div/div"));
-        type(registryBarcode, By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input"));
-       if (registryBarcode != null) {
-            driver.findElement(By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input")).sendKeys(Keys.ENTER);
-        }
+    public void finishForming() {
+        clickByCss("button.ant-btn.submit___3rLAN.button___2TQZM.ant-btn-primary");
     }
 
-    public void fillRegitryform2(String documentType, String subdivisionout, String registryBarcode) {
-// без нажатия enter после ввода ШК
-        spisok(subdivisionout, By.cssSelector("div.Select-control"));
-        spisok(documentType, By.xpath("//span[@id='react-select-8--value']/div"));
-        type(registryBarcode, By.cssSelector("div.f-element.f-element-text.inline.f-element-barcode > div.f-control > input.input"));
-
+    public void registryBarcode1() {
+        clickByCss("i.anticon.anticon-edit");
     }
 
-    public void fillObjectBarcode(String text) {
-        typeAndEnter(text, By.cssSelector("form.input-group > div.f-element.f-element-text.inline > div.f-control > input.input"));
+    public void registryBarcode2(String barcode) {
+        typeAndEnter(barcode, By.cssSelector("input[name=\"registry.barcode\"]"));
     }
 
-    public void openObjectSearch() {
-        clickByxpath("//div[2]/div[4]/div/div");
+    public void documentType(String numberofDocumentType) {
+        clickByCss("div.ant-select-selection__rendered");
+        spisokwithouttext(By.xpath("//div[2]/div/div/div/ul/li[" + numberofDocumentType + "]"));
     }
 
-    public void openSubdivisionSearch() {
-        clickByxpath("//form/div[2]/div");
+    public String getdocumentType() {
+        String textcontent = getTextContent(By.xpath("//span/div/div/div/div[2]"));
+        return textcontent;
+    }
+
+    public String getnotificationtext() {
+        String text = getTextContent(By.cssSelector("div.ant-notification-notice-message"));
+        return text;
+    }
+
+    public void addObject(String barcode) {
+        typeAndEnter(barcode, By.cssSelector("input[name=\"barcode\"]"));
     }
 
     public void noToNotyfication() {
@@ -70,13 +69,14 @@ public class RegistryHelper extends HelperBase {
     public void backFromRegitry() {
         click(By.linkText("Назад"));
     }
-public void chekBoxAll(){
-        click(By.cssSelector("label.f-label"));
-}
-public void deleteButton(){
-    clickByCss("div.controls > button.g-button");
-}
 
+    public void chekBoxAll() {
+        click(By.cssSelector("input.ant-checkbox-input"));
+    }
+
+    public void deleteButton() {
+        clickByxpath("(//button[@type='button'])[6]");
+    }
 
 
 }

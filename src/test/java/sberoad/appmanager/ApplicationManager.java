@@ -47,12 +47,12 @@ public class ApplicationManager {
 
     private void Auth(String login, String password) throws InterruptedException {
 
-        driver.get("http://sb-oad-demo.reksoft.ru/app1/login");
+        driver.get("http://sb-oad-test:8050/login");
         Thread.sleep(500);
         HelperBase ispravit = new HelperBase(driver);
-        ispravit.type(login,By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div/div[2]/input"));
-        ispravit.type(password, By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div[2]/div[2]/span/input"));
-        driver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
+        ispravit.type(login,By.xpath("//input"));
+        ispravit.type(password, By.xpath("//div[2]/div/div/span/input"));
+        driver.findElement(By.xpath("//button")).click();
     }
     public void stop() {
         driver.quit();

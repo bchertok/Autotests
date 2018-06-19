@@ -10,7 +10,7 @@ public class Navigation extends HelperBase {
     }
 
     public void startPage() {
-        driver.get("http://sb-oad-demo.reksoft.ru/app1/system_functions");
+        driver.get("http://sb-oad-test:8050/");
     }
 
 
@@ -19,10 +19,10 @@ public class Navigation extends HelperBase {
         click(By.linkText("Реестр"));
     }
     public void ToNewRegistry () throws InterruptedException {
-        click(By.linkText("Функции системы"));
-        click(By.linkText("Реестр"));
+        click(By.linkText("Сдать документы в архив"));
+//        click(By.linkText("Реестры"));
         Thread.sleep(1000);
-        click(By.linkText("Создать реестр"));
+        click(By.cssSelector("button.ant-btn.button___2TQZM"));
     }
 
 }

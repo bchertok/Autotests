@@ -12,10 +12,10 @@ public class RegistryAS1 extends TestBase {
        // application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
         Thread.sleep(2000);
-        application.getRegistryHelper().fillRegitryform("действующие", subdivision, null);
-        application.getRegistryHelper().openObjectSearch();
-        Thread.sleep(1000);
-        application.getRegistryHelper().openSubdivisionSearch();
+//        application.getRegistryHelper().fillRegitryform("действующие", subdivision, null);
+//        application.getRegistryHelper().openObjectSearch();
+//        Thread.sleep(1000);
+//        application.getRegistryHelper().openSubdivisionSearch();
 
         String podrazdeleniyeOtpravitel = application.getHelperBase().getTextContent(By.xpath("//span/div"));
         String sP = application.getHelperBase().getTextContent(By.xpath("//form/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/span/div"));

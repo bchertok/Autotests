@@ -25,14 +25,18 @@ public class NotInChekList {
             bugsFile.add(s);
         });
         bugsFile.forEach(System.out::println);
+
+
         for (String s : bugsFile) {
             for (int z = 0; z < jiraFile.size(); z++)
                 if (s.contains(jiraFile.get(z))) {
                     avtosravn1.add(jiraFile.get(z));
                 }
         }
+
         avtosravn2 = jiraFile;
         avtosravn2.removeAll(avtosravn1);
+
         System.out.println("\n======================================================================================");
         avtosravn2.forEach(System.out::println);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\BChertok\\Desktop\\bugs\\rezRaznicisJiravar1.txt"))) {
@@ -41,18 +45,6 @@ public class NotInChekList {
                 bw.write(line + "\n");
                 bw.newLine();
 
-            }
-        }
-
-        System.out.println("\n======================================================================================");
-
-        System.out.println("\n========================");
-        jiraFile.removeAll(bugsFile);
-        jiraFile.forEach(System.out::println);
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\BChertok\\Desktop\\bugs\\rezRaznicisJiravar2.txt"))) {
-            for (String line : jiraFile) {
-                bw.write(line + "\n");
-                bw.newLine();
             }
         }
     }

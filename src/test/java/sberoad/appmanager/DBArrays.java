@@ -36,11 +36,11 @@ public class DBArrays {
                 "  C.DOCNUMBER DOCNUMBER,\n" +
                 "  count(C.DOCNUMBER) CNT\n" +
                 "FROM CONTRACT C\n" +
-                "  join DOCUMENT_CONTRACT DC on C.ID = DC.CONTRACT_ID\n" +
-                "  join DOCUMENT D on DC.DOCUMENT_ID = D.ID\n" +
-                "where D.FORMCODE in (3)\n" +
-                "AND D.STATECODE = 2\n" +
-                "and D.INVENTORY_ID IS NULL\n" +
+                "  join DOCUMENT_CONTRACT DC on C.PID = DC.CONTRACT_PID\n" +
+                "  join DOCUMENT D on DC.DOCUMENT_PID = D.PID\n" +
+                "where D.FORMCODE_PID in (172352)\n" +
+                "AND D.STATECODE_PID = 171221\n" +
+                "and D.INVENTORY_PID IS NULL\n" +
                 "group by C.DOCNUMBER\n" +
                 "having count(C.DOCNUMBER) = 1", "DOCNUMBER");
         return barcodeInfo;
@@ -313,82 +313,20 @@ public static List<String> zapros7() {
         return barcodeInfo;
     }
 
-    // ШК всех описей
-    public static List<String> allInventoryBarcode() {
-    DB db = new DB();
-    List<String> barcode = db.getAllValue("SELECT " +
-            "BARCODE FROM INVENTORY", "BARCODE");
-        return barcode;
+    // 13. Документы привязанные к договору
+    public static List<String> zapros13() {
+        DB db1 = new DB();
+        List<String> barcodeInfo = db1.getAllValue("SELECT\n" +
+                "  D.BARCODE\n" +
+                "FROM CONTRACT C\n" +
+                "  join DOCUMENT_CONTRACT DC on C.ID = DC.CONTRACT_ID\n" +
+                "  join DOCUMENT D on DC.DOCUMENT_ID = D.ID\n" +
+                "where D.FORMCODE in (0,3)\n" +
+                "AND D.STATECODE = 2\n" +
+                "and D.INVENTORY_ID IS NULL\n", "BARCODE");
+        return barcodeInfo;
     }
 
-    // ШК всех МЛ
-    public static List<String> allWaybillsBarcode() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM WAYBILL", "BARCODE");
-        return barcode;
-    }
-
-    // ШК всех ТЕ
-    public static List<String> allTransportUnitBarcode() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM TRANSPORTUNIT", "BARCODE");
-        return barcode;
-    }
-
-
-    // ШК всех доков Завершенного делопроизводства
-    public static List<String> allDossiertBarcode() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DOSSIER", "BARCODE");
-        return barcode;
-    }
-
-    // ШК всех Сшивов ДД
-    public static List<String> allDailybindingBarcode() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DAILYBINDING", "BARCODE");
-        return barcode;
-    }
-
-    // ШК  Сшивов ДД в статусе 1,2
-    public static List<String> DailybindingBarcodeIn12() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DAILYBINDING WHERE STATECODE IN (1,2)", "BARCODE");
-        return barcode;
-    }
-    // ШК  Сшивов ДД в статусе 5
-    public static List<String> allDailybindingBarcodeIn5() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DAILYBINDING WHERE STATECODE IN (5)", "BARCODE");
-        return barcode;
-    }
-    // ШК  Сшивов ДД в статусе 6
-    public static List<String> allDailybindingBarcodeIn6() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DAILYBINDING WHERE STATECODE IN (6)", "BARCODE");
-        return barcode;
-    }
-    // ШК  Сшивов ДД в статусе 7 и 9
-    public static List<String> allDailybindingBarcodeIn79() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DAILYBINDING WHERE STATECODE IN (7,9)", "BARCODE");
-        return barcode;
-    }
-    // ШК  Сшивов ДД в статусе 8
-    public static List<String> allDailybindingBarcodeIn8() {
-        DB db = new DB();
-        List<String> barcode = db.getAllValue("SELECT " +
-                "BARCODE FROM DAILYBINDING WHERE STATECODE IN (8)", "BARCODE");
-        return barcode;
-    }
 
 
 

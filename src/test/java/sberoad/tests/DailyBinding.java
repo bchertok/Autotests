@@ -10,7 +10,7 @@ public class DailyBinding extends TestBase{
 
     application.getNavigation().ToNewRegistry();
     Thread.sleep(2000);
-    application.getRegistryHelper().fillRegitryform("Сшивы документов дня", null, null);
+//    application.getRegistryHelper().fillRegitryform("Сшивы документов дня", null, null);
     Thread.sleep(3000);
     application.getDailyBindingHelper().addDailyBinding();
     Thread.sleep(1000);

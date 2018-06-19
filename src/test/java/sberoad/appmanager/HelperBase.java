@@ -49,6 +49,16 @@ public class HelperBase {
         }
     }
 
+    void spisokwithouttext(By locator) {
+        Actions actions = new Actions(driver);
+        WebElement we = driver.findElement(locator);
+        actions.moveToElement(we);
+        actions.click();
+        actions.perform();
+    }
+
+    
+
     void click(By locator) {
         driver.findElement(locator).click();
     }
@@ -93,40 +103,49 @@ public class HelperBase {
     public String getTextContent(By locator) {
         String txt = "не найдено";
         boolean elementPresent = isElementPresent(locator);
-
         if (elementPresent) {
-
             txt = driver.findElement(locator).getAttribute("textContent");
-
             // System.out.println(txt);
             return txt;
         } else {
             System.out.println("Element not found");
         }
-
         return txt;
     }
+
+
+    public String getinnerText(By locator) {
+        String txt = driver.findElement(locator).getAttribute("innerText");
+        // System.out.println(txt);
+        return txt;
+    }
+
 
     public String getTextValue(By locator) {
         String txt = "не найдено";
         boolean elementPresent = isElementPresent(locator);
-
         if (elementPresent) {
-
             txt = driver.findElement(locator).getAttribute("value");
-
             // System.out.println(txt);
             return txt;
         } else {
             System.out.println("Element not found");
         }
-
         return txt;
     }
 
     private boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    private boolean isElementDisplayed(By locator) {
+        try {
+            driver.findElement(locator).isDisplayed();
             return true;
         } catch (NoSuchElementException e) {
             return false;
