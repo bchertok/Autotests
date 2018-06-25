@@ -5,7 +5,7 @@ public class DBArrays3random {
         // действующие документы со статусами (перечислить)
         DB db1 = new DB();
         String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOCUMENT ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "inner join DOCUMENTFORM ug on ud.FORMCODE_PID=ug.PID\n" +
                 "where uz.CODE in (" + states +")" +
@@ -13,12 +13,25 @@ public class DBArrays3random {
                 "AND ud.INVENTORY_PID IS NULL", "CODE");
         return registryPid;
     }
+    public static String documentFromInventorystatecode1() {
+        // документ находящийся в описи и созданный вручную111
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
+                "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
+                "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
+                "inner join DOCUMENTFORM ug on ud.FORMCODE_PID=ug.PID\n" +
+                "where uz.CODE in (01)" +
+                "AND ug.CODE in (0, 3)" +
+                "AND ud.INVENTORY_PID IS NOT NULL", "CODE");
+        return registryPid;
+    }
+
     // ШК электронного действующего документа
     public static String electronicdocumentBarcodeinstate(String states) {
         // действующие документы со статусами (перечислить)
         DB db1 = new DB();
         String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOCUMENT ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "inner join DOCUMENTFORM ug on ud.FORMCODE_PID=ug.PID\n" +
                 "where uz.CODE in (" + states +")" +
@@ -30,7 +43,7 @@ public class DBArrays3random {
         // описи со статусами (перечислить)
         DB db1 = new DB();
         String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join INVENTORY ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join INVENTORY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join INVENTORYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;
@@ -39,7 +52,7 @@ public class DBArrays3random {
         // сшивы со статусами (перечислить)
         DB db1 = new DB();
         String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DAILYBINDING ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DAILYBINDING ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;
@@ -48,7 +61,7 @@ public class DBArrays3random {
         // заверш. делопроизводство документы со статусами (перечислить)
         DB db1 = new DB();
         String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOSSIER ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOSSIER ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;

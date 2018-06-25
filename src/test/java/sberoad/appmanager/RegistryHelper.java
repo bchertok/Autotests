@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+
 public class RegistryHelper extends HelperBase {
 
     RegistryHelper(WebDriver driver) {
@@ -28,6 +29,29 @@ public class RegistryHelper extends HelperBase {
         spisokwithouttext(By.xpath("//div[2]/div/div/div/ul/li[" + numberofDocumentType + "]"));
     }
 
+    ////
+    public void spisokdossierType() {
+        // naimenovanie zagolovka dela
+        clickByxpath("//div[3]/div/div/div[2]/div/span/div/div");
+        clickByxpath("//div[3]/div/div/div/ul/li");
+// tip ucheta
+        spisokwithouttext(By.xpath("//div[@id='root']/div/div[2]/div/form/div[4]/div[2]/div/span/div/div/div/div"));
+        spisokwithouttext(By.xpath("//div[4]/div/div/div/ul/li[2]"));
+    }
+    public void editDossierDocument(String text){
+        clickByCss("button.ant-btn.edit-button.ant-btn-circle.ant-btn-icon-only");
+        type(text,By.cssSelector("div.rt-td > div.ant-row.ant-form-item.textInput___U6pTh > div.ant-form-item-control-wrapper > div.ant-form-item-control > span.ant-form-item-children > input.ant-input"));
+        clickByCss("button.ant-btn.edit-button.edit-button_save.ant-btn-circle.ant-btn-icon-only");
+    }
+public void spisokOtherCorrespondenceType(){
+        clickByxpath("//div[3]/div[2]/div/span/div/div/div");
+        clickByxpath("//div[3]/div/div/div/ul/li");
+}
+    public void addLine(){
+       clickByCss("div.ant-btn-group > button.ant-btn.button___2TQZM");
+    }
+
+    /////
     public String getdocumentType() {
         String textcontent = getTextContent(By.xpath("//span/div/div/div/div[2]"));
         return textcontent;
@@ -75,7 +99,8 @@ public class RegistryHelper extends HelperBase {
     }
 
     public void deleteButton() {
-        clickByxpath("(//button[@type='button'])[6]");
+        clickByxpath("(//button[@type='button'])[5]");
+        clickByCss("div.ant-notification-notice-message > button.ant-btn.button___2TQZM.ant-btn-primary");
     }
 
 

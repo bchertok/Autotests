@@ -21,19 +21,21 @@ public class Registry extends TestBase {
         application.getRegistryHelper().registryBarcode2(barcodeReg);
         Thread.sleep(1000);
         String barcodeDoc = DBArrays3random.documentBarcodeinstate("02");
+        System.out.println(barcodeDoc+ "  barcode documenta");
         application.getRegistryHelper().addObject(barcodeDoc);
-        Thread.sleep(3200);
+        Thread.sleep(3500);
+        System.out.println(barcodeReg + "  barcode reestra");
         String regstate = DBArrays2.registryStateFromDB(barcodeReg);
-        Assert.assertEquals(regstate,"1");
+        Assert.assertEquals(regstate, "01");
         String docstate = DBArrays2.documentStateFromDB(barcodeDoc);
-        Assert.assertEquals(docstate,"5");
+        Assert.assertEquals(docstate, "05");
 
-Thread.sleep(100000);
+        Thread.sleep(100000);
         application.getRegistryHelper().finishForming();
-       regstate = DBArrays2.registryStateFromDB(barcodeReg);
-        Assert.assertEquals(regstate,"2");
+        regstate = DBArrays2.registryStateFromDB(barcodeReg);
+        Assert.assertEquals(regstate, "02");
         docstate = DBArrays2.documentStateFromDB(barcodeDoc);
-        Assert.assertEquals(docstate,"5");
+        Assert.assertEquals(docstate, "05");
     }
     // Сшивы
     // Описи

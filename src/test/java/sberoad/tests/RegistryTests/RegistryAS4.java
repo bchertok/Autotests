@@ -28,8 +28,8 @@ public class RegistryAS4 extends TestBase {
             int z = rnd.nextInt(3);
             if (z == 0) {
                 application.getRegistryHelper().documentType(random.randomNumberOfDocumentType());
-                application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("2"));
-                Thread.sleep(500);
+                application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("02"));
+                Thread.sleep(3500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Сшивы документов дня");
                 application.getRegistryHelper().chekBoxAll();
@@ -37,8 +37,8 @@ public class RegistryAS4 extends TestBase {
             }
             if (z == 1) {
                 application.getRegistryHelper().documentType(random.randomNumberOfDocumentType());
-                application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("2"));
-                Thread.sleep(500);
+                application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("02"));
+                Thread.sleep(3500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Действующие документы");
                 application.getRegistryHelper().chekBoxAll();
@@ -46,8 +46,8 @@ public class RegistryAS4 extends TestBase {
             }
             if (z == 2) {
                 application.getRegistryHelper().documentType(random.randomNumberOfDocumentType());
-                System.out.println(DBArrays3random.inventoryBarcodeinstate("4"));
-                Thread.sleep(500);
+                application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate("04"));
+                Thread.sleep(3500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Действующие документы");
                 application.getRegistryHelper().chekBoxAll();

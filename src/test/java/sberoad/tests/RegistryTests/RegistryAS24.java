@@ -6,8 +6,17 @@ import sberoad.appmanager.DBArrays3random;
 import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
 
-public class RegistryAS24 extends TestBase{
-    @Test public void registryAs24var1() throws InterruptedException {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class RegistryAS24 extends TestBase {
+    private List<String> statesForDocument = Arrays.asList("02", "05", "06", "07", "08", "09", "10", "11");
+    private List<String> statesForInventory = Arrays.asList("03", "04", "05", "06", "07", "08", "09", "10", "11");
+
+    @Test
+    public void registryAs24var1() throws InterruptedException {
         // Добавляем действующий документ и пытаемся добавить по ШК Сшив
         Thread.sleep(200);
         application.getNavigation().startPage();
@@ -17,10 +26,16 @@ public class RegistryAS24 extends TestBase{
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
         application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("2"));
         Thread.sleep(2560);
-        application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("2"));
-        Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),"Тип документа не соответствует типу документов реестра и добавлен не будет");
+
+        for (String s : statesForDocument) {
+            application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(), "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
     }
-    @Test public void registryAs24var2() throws InterruptedException {
+
+
+    @Test
+    public void registryAs24var2() throws InterruptedException {
         // Добавляем сшив и пытаемся добавить по ШК действующий док и опись
         Thread.sleep(200);
         application.getNavigation().startPage();
@@ -30,31 +45,78 @@ public class RegistryAS24 extends TestBase{
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
         application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("2"));
         Thread.sleep(2560);
-        application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("2"));
-        Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
-                "Тип документа не соответствует типу документов реестра и добавлен не будет");
-        application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate("4"));
-        Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
-                "Тип документа не соответствует типу документов реестра и добавлен не будет");
+        for (String s : statesForDocument) {
+            application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+        for (String s : statesForInventory) {
+            application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
     }
-//    @Test public void registryAs24var3() throws InterruptedException {
-//        // Добавляем зав. делопр. и пытаемся добавить по ШК действующий док, опись и сшив
-//        Thread.sleep(200);
-//        application.getNavigation().startPage();
-//        application.getNavigation().ToNewRegistry();
-//        Randoms rnd = new Randoms();
-//        Thread.sleep(300);
-//        application.getRegistryHelper().documentType("2");
-//        application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("2"));
-//        Thread.sleep(2560);
-//        application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("2"));
-//        Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
-//                "Тип документа не соответствует типу документов реестра и добавлен не будет");
-//        application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate("4"));
-//        Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
-//                "Тип документа не соответствует типу документов реестра и добавлен не будет");
-//    }
 
-    // надо прямо писать сценарий со всеми ти пами доков
+    @Test
+    public void registryAs24var3() throws InterruptedException {
+        // Добавляем зав. делопр. и пытаемся добавить по ШК действующий док, опись и сшив
+        Thread.sleep(200);
+        application.getNavigation().startPage();
+        application.getNavigation().ToNewRegistry();
+        Thread.sleep(300);
+        application.getRegistryHelper().documentType("2");
+        application.getRegistryHelper().spisokdossierType();
+        application.getRegistryHelper().editDossierDocument("zzz");
+        Thread.sleep(3560);
+        for (String s : statesForDocument) {
+            application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+        for (String s : statesForDocument) {
+            application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+        for (String s : statesForInventory) {
+            application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+
+
+    }
+
+    @Test
+    public void registryAs24var4() throws InterruptedException {
+        // Добавляем корреспонденцию и пытаемся добавить по ШК действующий док, опись и сшив
+        Thread.sleep(200);
+        application.getNavigation().startPage();
+        application.getNavigation().ToNewRegistry();
+        Thread.sleep(300);
+        application.getRegistryHelper().documentType("4");
+        application.getRegistryHelper().spisokOtherCorrespondenceType();
+        application.getRegistryHelper().addLine();
+        application.getRegistryHelper().editDossierDocument("zzz");
+        Thread.sleep(3560);
+
+        for (String s : statesForDocument) {
+            application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+        for (String s : statesForDocument) {
+            application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+        for (String s : statesForInventory) {
+            application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate(s));
+            Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
+                    "Тип документа не соответствует типу документов реестра и добавлен не будет.");
+        }
+    }
+
+
 }
 

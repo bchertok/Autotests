@@ -77,7 +77,7 @@ public class DBArrays2 {
     public static List<String> registryBarcodein12() {
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,u.PID from BARCODEINFO u \n" +
-                "inner join REGISTRY ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join REGISTRY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join REGISTRYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (01,02)", "CODE");
         return registryPid;
@@ -85,7 +85,7 @@ public class DBArrays2 {
     public static List<String> registryBarcodein37() {
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,u.PID from BARCODEINFO u \n" +
-                "inner join REGISTRY ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join REGISTRY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join REGISTRYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE BETWEEN '03' and '07'", "CODE");
         return registryPid;
@@ -94,7 +94,7 @@ public class DBArrays2 {
         // действующие документы со статусами (перечислить)
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOCUMENT ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "inner join DOCUMENTFORM ug on ud.FORMCODE_PID=ug.PID\n" +
                 "where uz.CODE in (" + states +")" +
@@ -106,7 +106,7 @@ public class DBArrays2 {
         // действующие документы со статусами (перечислить)
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOCUMENT ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "inner join DOCUMENTFORM ug on ud.FORMCODE_PID=ug.PID\n" +
                 "where uz.CODE in (" + states +")" +
@@ -118,7 +118,7 @@ public class DBArrays2 {
         // описи со статусами (перечислить)
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join INVENTORY ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join INVENTORY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join INVENTORYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;
@@ -127,7 +127,7 @@ public class DBArrays2 {
         // сшивы со статусами (перечислить)
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DAILYBINDING ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DAILYBINDING ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;
@@ -136,7 +136,7 @@ public class DBArrays2 {
         // заверш. делопроизводство документы со статусами (перечислить)
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOSSIER ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOSSIER ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;
@@ -161,7 +161,7 @@ public class DBArrays2 {
         // действующие документы со статусами (перечислить)
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
-                "inner join DOCUMENT ud on ud.BARCODE_PID=u.PID\n" +
+                "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "inner join DOCUMENTFORM ug on ud.FORMCODE_PID=ug.PID\n" +
                 "where uz.CODE in (" + states +")" +
