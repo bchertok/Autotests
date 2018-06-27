@@ -151,7 +151,14 @@ public class DBArrays2 {
         return registryPid;
     }
 
-    public static String regestryItemDoc(String regBarcode) {
+    public static String documentPid(String docBarcode) {
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("SELECT ENTITY_PID FROM BARCODEINFO\n" +
+                "        WHERE CODE  = '" + docBarcode + "'", "ENTITY_PID");
+        return registryPid;
+    }
+
+    public static String registryItemDoc(String regBarcode) {
         DB db1 = new DB();
         String docPid = db1.getRandomValue("SELECT RE.DOCUMENT_PID FROM REGISTRYITEM RE\n" +
                 "    INNER JOIN BARCODEINFO UZ ON UZ.ENTITY_PID = RE.REGISTRY_PID\n" +
@@ -160,6 +167,21 @@ public class DBArrays2 {
                 "    WHERE ENTITY_PID  = '" + docPid +  "'","CODE" );
         return registryPid;
     }
+    public static String registryWhereDocWas(String regBarcode) {
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("SELECT RE.REGISTRY_PID FROM REGISTRYITEM RE\n" +
+                "    INNER JOIN BARCODEINFO UZ ON UZ.ENTITY_PID = RE.DOCUMENT_PID\n" +
+                "    WHERE UZ.CODE  = '" + regBarcode + "'", "REGISTRY_PID");
+        return registryPid;
+    }
+
+    public static String documentFromRegestryWhereDocWas(String regpid) {
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("SELECT DOCUMENT_PID FROM REGISTRYITEM\n" +
+                "    WHERE REGISTRY_PID  = '" + regpid + "'", "DOCUMENT_PID");
+        return registryPid;
+    }
+
 
     public static List<String> documentInInventoryBarcodeinstate(String states) {
         // действующие документы со статусами (перечислить)

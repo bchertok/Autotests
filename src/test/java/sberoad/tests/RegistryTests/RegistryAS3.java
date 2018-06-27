@@ -7,6 +7,7 @@ import sberoad.appmanager.DBArrays3random;
 import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
 
+import static oracle.net.aso.C11.s;
 import static oracle.net.aso.C11.z;
 
 public class RegistryAS3 extends TestBase {
@@ -51,7 +52,7 @@ public class RegistryAS3 extends TestBase {
             Assert.assertEquals(notification, "Неверный формат штрих-кода.");
             z++;
         }
-         z = 78;
+        z = 78;
         while (z <= 100) {
             String barcode = random.randomForBarcodeCrash(z);
             System.out.println(barcode);
@@ -66,13 +67,13 @@ public class RegistryAS3 extends TestBase {
     }
 
 
-
     //  Корректный ШК в поле Шк объекта АС 12
     @Test
     public void registryAS3var3() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        application.getRegistryHelper().documentType("1");
         Randoms random = new Randoms();
         Thread.sleep(500);
         for (int i = 0; i < 20; i++) {
@@ -80,9 +81,21 @@ public class RegistryAS3 extends TestBase {
             System.out.println(barcode);
             application.getRegistryHelper().addObject(barcode);
             Thread.sleep(500);
-            String notification = application.getHelperBase().getinnerText(By.xpath("//div[3]/div/div[2]/div/div"));
+            String notification = application.getRegistryHelper().getnotificationtext();
+            Thread.sleep(1500);
+            Assert.assertEquals(notification, "Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную.");
+        }
+        int z = 50;
+        while (z < 78) {
+            String barcode = random.randomForBarcodeCrash(z);
+            System.out.println(barcode);
+            System.out.println(barcode.length());
+            application.getRegistryHelper().addObject(barcode);
             Thread.sleep(500);
-            Assert.assertEquals(notification, "«Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную");
+            String notification = application.getRegistryHelper().getnotificationtext();
+            Thread.sleep(1500);
+            Assert.assertEquals(notification, "Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную.");
+            z++;
         }
     }
 
@@ -92,11 +105,12 @@ public class RegistryAS3 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        application.getRegistryHelper().documentType("1");
         Thread.sleep(500);
         for (int i = 0; i < 20; i++) {
             application.getRegistryHelper().addObject(DBArrays3random.electronicdocumentBarcodeinstate("2"));
             Thread.sleep(500);
-            String notification = application.getHelperBase().getinnerText(By.xpath("//div[3]/div/div[2]/div/div"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Добавление электронного документа невозможно");
         }
     }

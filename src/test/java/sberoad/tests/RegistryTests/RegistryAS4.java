@@ -1,15 +1,10 @@
 package sberoad.tests.RegistryTests;
 
-import org.openqa.selenium.By;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sberoad.appmanager.DB;
-import sberoad.appmanager.DBArrays2;
 import sberoad.appmanager.DBArrays3random;
-import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
-
-import java.util.List;
 import java.util.Random;
 
 public class RegistryAS4 extends TestBase {
