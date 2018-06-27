@@ -66,4 +66,20 @@ public class DBArrays3random {
                 "where uz.CODE in (" + states +")", "CODE");
         return registryPid;
     }
+    public static String registryBarcodein12() {
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,u.PID from BARCODEINFO u \n" +
+                "inner join REGISTRY ud on ud.PID=u.ENTITY_PID\n" +
+                "inner join REGISTRYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
+                "where uz.CODE in (01,02)", "CODE");
+        return registryPid;
+    }
+    public static String registryBarcodein37() {
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("select u.CODE, uz.CODE,u.PID from BARCODEINFO u \n" +
+                "inner join REGISTRY ud on ud.PID=u.ENTITY_PID\n" +
+                "inner join REGISTRYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
+                "where uz.CODE BETWEEN '03' and '07'", "CODE");
+        return registryPid;
+    }
 }

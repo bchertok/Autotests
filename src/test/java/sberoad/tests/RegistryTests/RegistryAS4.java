@@ -20,38 +20,42 @@ public class RegistryAS4 extends TestBase {
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
         Thread.sleep(500);
-        Randoms random = new Randoms();
         Thread.sleep(500);
         for (int i = 0; i < 20; i++) {
             Thread.sleep(200);
             Random rnd = new Random();
             int z = rnd.nextInt(3);
             if (z == 0) {
-                application.getRegistryHelper().documentType(random.randomNumberOfDocumentType());
+                application.getRegistryHelper().documentType("1");
                 application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("02"));
-                Thread.sleep(3500);
+                Thread.sleep(5500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Сшивы документов дня");
                 application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
+                Thread.sleep(3500);
             }
             if (z == 1) {
-                application.getRegistryHelper().documentType(random.randomNumberOfDocumentType());
+                application.getRegistryHelper().documentType("3");
                 application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("02"));
-                Thread.sleep(3500);
+                Thread.sleep(5500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Действующие документы");
                 application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
+                Thread.sleep(3500);
             }
             if (z == 2) {
-                application.getRegistryHelper().documentType(random.randomNumberOfDocumentType());
-                application.getRegistryHelper().addObject(DBArrays3random.inventoryBarcodeinstate("04"));
-                Thread.sleep(3500);
+                application.getRegistryHelper().documentType("3");
+                String barcode = DBArrays3random.inventoryBarcodeinstate("04");
+                System.out.println("ШК описи"+barcode);
+                application.getRegistryHelper().addObject(barcode);
+                Thread.sleep(5500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Действующие документы");
                 application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
+                Thread.sleep(3500);
             }
         }
     }

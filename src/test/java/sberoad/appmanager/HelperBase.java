@@ -3,6 +3,9 @@ package sberoad.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.File;
+import java.io.IOException;
+
 public class HelperBase {
     final WebDriver driver;
 
@@ -134,7 +137,7 @@ public class HelperBase {
         return txt;
     }
 
-    private boolean isElementPresent(By locator) {
+    public boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;

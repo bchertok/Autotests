@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import sberoad.appmanager.DB;
 import sberoad.appmanager.DBArrays2;
+import sberoad.appmanager.DBArrays3random;
 import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
 
@@ -21,18 +22,15 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(100);
         application.getNavigation().ToNewRegistry();
         Thread.sleep(1000);
-          Randoms rnd = new Randoms();
-          application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
         application.getRegistryHelper().registryBarcode1();
         for (String s : DBArrays2.registryBarcodein12()) {
             System.out.println(s);
+            Thread.sleep(500);
             application.getRegistryHelper().registryBarcode2(s);
-            Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
-            Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом.");
-//            application.getRegistryHelper().okeyToNotyfication();
-//            application.getRegistryHelper().okeyToNotyfication();
-            Thread.sleep(300);
+            String notification = application.getRegistryHelper().getnotificationtext();
+            Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование?ДаОтмена");
+           Thread.sleep(300);
+            application.getRegistryHelper().noToNotyfication();
         }
     }
 
@@ -45,21 +43,22 @@ public void registryAS2var2() throws InterruptedException {
     Thread.sleep(100);
     application.getNavigation().ToNewRegistry();
     Thread.sleep(1000);
-    Randoms rnd = new Randoms();
-    application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
     application.getRegistryHelper().registryBarcode1();
-    for (String s : DBArrays2.registryBarcodein37()) {
-        System.out.println(s);
-        application.getRegistryHelper().registryBarcode2(s);
+    String barcode = DBArrays3random.registryBarcodein37();
+        System.out.println(barcode);
+        application.getRegistryHelper().registryBarcode2("56586-27634-51386-17588-40400-55287-13558-64841");
         Thread.sleep(200);
-        String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
-        Assert.assertEquals(notification, "Данный штрих-код принадлежит описи. Введите другое значение");
-//            application.getRegistryHelper().okeyToNotyfication();
-//            application.getRegistryHelper().okeyToNotyfication();
+        String notification = application.getRegistryHelper().getnotificationtext();
+//        Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на просмотр?ДаОтмена");
+            application.getRegistryHelper().okeyToNotyfication();
         Thread.sleep(300);
-    }
+
+
+
 }
-//
+
+
+
 //    // реестры которые должны быть открыты на редактирование
 //    @Test(enabled = false)
 //    public void registryAS2var3() throws InterruptedException {

@@ -5,24 +5,10 @@ import java.util.List;
 public class DBArrays2 {
 
     // Айди реестров
-    public static List<String> registryPid() {
-        DB db1 = new DB();
-        List<String> registryPid = db1.getAllValue("SELECT " +
-                "PID FROM REGISTRY", "PID");
-        return registryPid;
-    }
-
     public static List<String> inventoryBarcode() {
         DB db1 = new DB();
         List<String> registryPid = db1.getAllValue("SELECT " +
                 "CODE FROM BARCODEINFO WHERE ENTITY_TYPE_PID = 171175", "CODE");
-        return registryPid;
-    }
-
-    public static List<String> registryBarcode() {
-        DB db1 = new DB();
-        List<String> registryPid = db1.getAllValue("SELECT " +
-                "CODE FROM BARCODEINFO WHERE ENTITY_TYPE_PID = 171176", "CODE");
         return registryPid;
     }
 
@@ -157,6 +143,24 @@ public class DBArrays2 {
                 "        WHERE UZ.CODE  = '" + docBarcode + "'", "CODE");
         return registryPid;
     }
+    public static String ifDocumenthaveInventory(String docBarcode) {
+        DB db1 = new DB();
+        String registryPid = db1.getRandomValue("SELECT U.INVENTORY_PID FROM DOCUMENT U\n" +
+                "        INNER JOIN BARCODEINFO UZ ON UZ.ENTITY_PID=U.PID\n" +
+                "        WHERE UZ.CODE  = '" + docBarcode + "'", "INVENTORY_PID");
+        return registryPid;
+    }
+
+    public static String regestryItemDoc(String regBarcode) {
+        DB db1 = new DB();
+        String docPid = db1.getRandomValue("SELECT RE.DOCUMENT_PID FROM REGISTRYITEM RE\n" +
+                "    INNER JOIN BARCODEINFO UZ ON UZ.ENTITY_PID = RE.REGISTRY_PID\n" +
+                "    WHERE UZ.CODE  = '" + regBarcode + "'", "DOCUMENT_PID");
+        String registryPid = db1.getRandomValue("SELECT CODE FROM BARCODEINFO\n" +
+                "    WHERE ENTITY_PID  = '" + docPid +  "'","CODE" );
+        return registryPid;
+    }
+
     public static List<String> documentInInventoryBarcodeinstate(String states) {
         // действующие документы со статусами (перечислить)
         DB db1 = new DB();

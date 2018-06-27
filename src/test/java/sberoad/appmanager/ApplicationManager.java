@@ -27,7 +27,7 @@ public class ApplicationManager {
     public void init() throws InterruptedException {
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         subdivisionhelper = new Subdivisionhelper(driver);
         archiveHelper = new ArchiveHelper(driver);
         buisnessUnitHelper = new BuisnessUnitHelper(driver);
@@ -40,7 +40,7 @@ public class ApplicationManager {
         helperBase = new HelperBase(driver);
 
 
-
+        driver.manage().window().maximize();
         Auth(null, null);
 
     }

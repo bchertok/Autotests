@@ -26,10 +26,14 @@ public class RegistryHelper extends HelperBase {
 
     public void documentType(String numberofDocumentType) {
         clickByCss("div.ant-select-selection__rendered");
-        spisokwithouttext(By.xpath("//div[2]/div/div/div/ul/li[" + numberofDocumentType + "]"));
+if (isElementPresent(By.xpath("//div[2]/div/div/div/ul/li[" + numberofDocumentType + "]"))) {
+    spisokwithouttext(By.xpath("//div[2]/div/div/div/ul/li[" + numberofDocumentType + "]"));
+}
+else
+        spisokwithouttext(By.xpath("//div[3]/div/div/div/ul/li[" + numberofDocumentType + "]"));
     }
 
-    ////
+
     public void spisokdossierType() {
         // naimenovanie zagolovka dela
         clickByxpath("//div[3]/div/div/div[2]/div/span/div/div");
@@ -67,12 +71,7 @@ public void spisokOtherCorrespondenceType(){
     }
 
     public void noToNotyfication() {
-        // если не на все уведомления будет такой локатор то сделать локатор параметром и в helperbase
-        Actions actions = new Actions(driver);
-        WebElement we = driver.findElement(By.xpath("//div[3]/button[2]"));
-        actions.moveToElement(we);
-        actions.click();
-        actions.perform();
+      clickByCss("button.ant-btn.button___2TQZM.ant-btn-default");
     }
 
     public void yesToNotyfication() {
@@ -87,7 +86,7 @@ public void spisokOtherCorrespondenceType(){
 
     public void okeyToNotyfication() {
         // если не на все уведомления будет такой локатор то сделать локатор параметром и в helperbase
-        click(By.cssSelector("div.modal-footer > button.g-button"));
+        click(By.cssSelector("div.ant-notification-notice-message > button.ant-btn.button___2TQZM.ant-btn-primary"));
     }
 
     public void backFromRegitry() {
@@ -98,10 +97,12 @@ public void spisokOtherCorrespondenceType(){
         click(By.cssSelector("input.ant-checkbox-input"));
     }
 
-    public void deleteButton() {
+    public void deleteButton() throws InterruptedException {
         clickByxpath("(//button[@type='button'])[5]");
-        clickByCss("div.ant-notification-notice-message > button.ant-btn.button___2TQZM.ant-btn-primary");
+        Thread.sleep(300);
+        click(By.cssSelector("div.ant-notification-notice-message > button.ant-btn.button___2TQZM.ant-btn-primary"));
     }
+
 
 
 }
