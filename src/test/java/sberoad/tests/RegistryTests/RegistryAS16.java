@@ -15,7 +15,7 @@ public class RegistryAS16 extends TestBase {
             "Добавление объекта в статусе «Получен» невозможно",
             "Добавление объекта в статусе «Зарегистрирован» невозможно",
             "Добавление объекта в статусе «До выяснения (регистрация)» невозможно",
-            "Добавление объекта в статусе «Утрачен» невозможно");
+            "Добавление объекта в статусе «Отправлен в логистику» невозможно");
     @Test
     public void registryAddObjectVar1() throws InterruptedException {
         Thread.sleep(200);
@@ -29,7 +29,8 @@ public class RegistryAS16 extends TestBase {
           String barcode = DBArrays3random.documentBarcodeinstate(s);
             System.out.println(barcode);
             application.getRegistryHelper().addObject(barcode);
-            String txt =  application.getRegistryHelper().getnotificationtext();
+            Thread.sleep(200);
+            String txt =  application.getRegistryHelper().getToolteaptext();
             Assert.assertEquals(txt, texts.get(i));
             i++;
         }
@@ -39,7 +40,8 @@ public class RegistryAS16 extends TestBase {
             String barcode =DBArrays3random.dailybindingBarcodeinstate(s);
             System.out.println(barcode);
             application.getRegistryHelper().addObject(barcode);
-            String txt =  application.getRegistryHelper().getnotificationtext();
+            Thread.sleep(200);
+            String txt =  application.getRegistryHelper().getToolteaptext();
             Assert.assertEquals(txt, texts.get(z));
             z++;
         }
@@ -49,7 +51,8 @@ public class RegistryAS16 extends TestBase {
             String barcode =DBArrays3random.inventoryBarcodeinstate(s);
             System.out.println(barcode);
             application.getRegistryHelper().addObject(barcode);
-            String txt =  application.getRegistryHelper().getnotificationtext();
+            Thread.sleep(200);
+            String txt =  application.getRegistryHelper().getToolteaptext();
             Assert.assertEquals(txt, texts.get(x));
             x++;
         }

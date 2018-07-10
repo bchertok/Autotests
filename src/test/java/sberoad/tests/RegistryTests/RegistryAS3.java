@@ -25,6 +25,7 @@ public class RegistryAS3 extends TestBase {
             String barcode = random.randomForBarcodeCrash(z);
             System.out.println(barcode);
             application.getRegistryHelper().registryBarcode2(barcode);
+            Thread.sleep(50);
             String notification = application.getHelperBase().getinnerText(By.cssSelector("div.ant-form-explain"));
             Assert.assertEquals(notification, "Неверный формат штрих-кода.");
             z++;
@@ -81,9 +82,9 @@ public class RegistryAS3 extends TestBase {
             System.out.println(barcode);
             application.getRegistryHelper().addObject(barcode);
             Thread.sleep(500);
-            String notification = application.getRegistryHelper().getnotificationtext();
+            String notification = application.getRegistryHelper().getToolteaptext();
             Thread.sleep(1500);
-            Assert.assertEquals(notification, "Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную.");
+            Assert.assertEquals(notification, "Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную");
         }
         int z = 50;
         while (z < 78) {
@@ -92,9 +93,9 @@ public class RegistryAS3 extends TestBase {
             System.out.println(barcode.length());
             application.getRegistryHelper().addObject(barcode);
             Thread.sleep(500);
-            String notification = application.getRegistryHelper().getnotificationtext();
+            String notification = application.getRegistryHelper().getToolteaptext();
             Thread.sleep(1500);
-            Assert.assertEquals(notification, "Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную.");
+            Assert.assertEquals(notification, "Документ с таким штрих-кодом не найден в системе. Добавьте документ вручную");
             z++;
         }
     }
@@ -110,7 +111,7 @@ public class RegistryAS3 extends TestBase {
         for (int i = 0; i < 20; i++) {
             application.getRegistryHelper().addObject(DBArrays3random.electronicdocumentBarcodeinstate("2"));
             Thread.sleep(500);
-            String notification = application.getRegistryHelper().getnotificationtext();
+            String notification = application.getRegistryHelper().getToolteaptext();
             Assert.assertEquals(notification, "Добавление электронного документа невозможно");
         }
     }

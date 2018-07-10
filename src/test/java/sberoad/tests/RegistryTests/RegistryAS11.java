@@ -22,7 +22,7 @@ public class RegistryAS11 extends TestBase {
         application.getRegistryHelper().registryBarcode2(barcodeReg);
         Thread.sleep(100);
         application.getRegistryHelper().documentType("1");
-        String document = DBArrays3random.documentFromInventorystatecode1();
+        String document = DBArrays3random.documentFromInventorystatecode("01","03");
         System.out.println("ШК документа в описи в статусе 1      " + document);
         application.getRegistryHelper().addObject(document);
         Thread.sleep(1500);
@@ -34,8 +34,9 @@ public class RegistryAS11 extends TestBase {
         Assert.assertEquals(DBArrays2.documentStateFromDB(document), "05");
         System.out.println("есть ли у документа опись, должно быть null        " + DBArrays2.ifDocumenthaveInventory(document));
 //     Assert.assertEquals(DBArrays2.ifDocumenthaveInventory(document),"null");
-        System.out.println("документ находящийся в этом реестре, должен быть тот, который мы добавили       " + DBArrays2.registryItemDoc(barcodeReg));
-        Assert.assertEquals(DBArrays2.registryItemDoc(barcodeReg), document);
+        System.out.println("документ находящийся в этом реестре, должен быть тот, который мы добавили       " + DBArrays2.registryItemEntityID(barcodeReg,"DOCUMENT_PID"));
+      // последнюю строчку надо переделать в лист
+        Assert.assertEquals(DBArrays2.registryItemEntityID(barcodeReg,"DOCUMENT_PID"), document);
     }
 
     @Test
@@ -55,7 +56,7 @@ public class RegistryAS11 extends TestBase {
         String document = DBArrays3random.documentBarcodeinstate("5");
         System.out.println("ШК документа в статусе 5 из реестра 1-2      " + document);
         String regWhereDocWas = DBArrays2.registryWhereDocWas(document);
-        System.out.println("Реестр где был документ раньше" + regWhereDocWas);
+        System.out.println("pid Реестра где был документ раньше       " + regWhereDocWas);
         String docpid = DBArrays2.documentPid(document);
         System.out.println("Pid Документа, который мы перепривязываем        " + docpid);
         application.getRegistryHelper().addObject(document);
@@ -68,10 +69,12 @@ public class RegistryAS11 extends TestBase {
         Assert.assertEquals(DBArrays2.documentStateFromDB(document), "05");
         System.out.println("есть ли у документа опись, должно быть null        " + DBArrays2.ifDocumenthaveInventory(document));
         Assert.assertEquals(DBArrays2.ifDocumenthaveInventory(document), null);
-        System.out.println("документ находящийся в этом реестре, должен быть тот, который мы добавили       " + DBArrays2.registryItemDoc(barcodeReg));
-        Assert.assertEquals(DBArrays2.registryItemDoc(barcodeReg), document);
+        System.out.println("документ находящийся в этом реестре, должен быть тот, который мы добавили       " + DBArrays2.registryItemEntityID(barcodeReg,"DOCUMENT_PID"));
+        // последнюю строчку надо переделать в лист
+        Assert.assertEquals(DBArrays2.registryItemEntityID(barcodeReg,"DOCUMENT_PID"), document);
         String isoldRegistryitemclear = DBArrays2.documentFromRegestryWhereDocWas(regWhereDocWas);
         System.out.println("в старом реестре не должно быть этой записи в registryitem      " + isoldRegistryitemclear);
+        Assert.assertNotEquals(docpid,isoldRegistryitemclear);
     }
 
 }

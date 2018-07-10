@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RegistryAS2 extends TestBase {
     // введен шк реестра в статусе 1 или 2 и пользователь выбрал нет
-      @Test
+    @Test
     public void registryAS2var1() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
@@ -27,57 +27,57 @@ public class RegistryAS2 extends TestBase {
             System.out.println(s);
             Thread.sleep(500);
             application.getRegistryHelper().registryBarcode2(s);
+            Thread.sleep(300);
             String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование?ДаОтмена");
-           Thread.sleep(300);
+            Thread.sleep(300);
             application.getRegistryHelper().noToNotyfication();
         }
     }
 
-
-//    // реестры которые должны быть открыты на просмотр
-@Test
-public void registryAS2var2() throws InterruptedException {
-    Thread.sleep(200);
-    application.getNavigation().startPage();
-    Thread.sleep(100);
-    application.getNavigation().ToNewRegistry();
-    Thread.sleep(1000);
-    application.getRegistryHelper().registryBarcode1();
-    String barcode = DBArrays3random.registryBarcodein37();
+    // реестры которые должны быть открыты на просмотр
+    @Test
+    public void registryAS2var2() throws InterruptedException {
+        Thread.sleep(200);
+        application.getNavigation().startPage();
+        Thread.sleep(100);
+        application.getNavigation().ToNewRegistry();
+        Thread.sleep(1000);
+        application.getRegistryHelper().registryBarcode1();
+        String barcode = DBArrays3random.registryBarcodein37();
         System.out.println(barcode);
-        application.getRegistryHelper().registryBarcode2("56586-27634-51386-17588-40400-55287-13558-64841");
+        application.getRegistryHelper().registryBarcode2(barcode);
         Thread.sleep(200);
         String notification = application.getRegistryHelper().getnotificationtext();
-//        Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на просмотр?ДаОтмена");
-            application.getRegistryHelper().okeyToNotyfication();
+        Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на просмотр?ДаОтмена");
+        application.getRegistryHelper().okeyToNotyfication();
         Thread.sleep(300);
 
+        Thread.sleep(10000000);
+
+    }
 
 
-}
+    // реестры которые должны быть открыты на редактирование
+    @Test
+    public void registryAS2var3() throws InterruptedException {
+        Thread.sleep(200);
+        application.getNavigation().startPage();
+        Thread.sleep(100);
+        application.getNavigation().ToNewRegistry();
+        Thread.sleep(1000);
+        application.getRegistryHelper().registryBarcode1();
+        String barcode = DBArrays3random.registryBarcodein12();
+        System.out.println(barcode);
+        application.getRegistryHelper().registryBarcode2(barcode);
+        Thread.sleep(200);
+        String notification = application.getRegistryHelper().getnotificationtext();
+        Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование?ДаОтмена");
+        application.getRegistryHelper().okeyToNotyfication();
+        Thread.sleep(300);
 
-
-
-//    // реестры которые должны быть открыты на редактирование
-//    @Test(enabled = false)
-//    public void registryAS2var3() throws InterruptedException {
-//        DB db = new DB();
-//        List<String> barcode = db.getAllValue("SELECT " +
-//                "BARCODE FROM REGISTRY WHERE STATECODE=01 OR STATECODE=02", "BARCODE");
-//
-//        for (String s : barcode) {
-//            System.out.println(s);
-//            application.getNavigation().startPage();
-//            Thread.sleep(100);
-//            application.getNavigation().ToNewRegistry();
-//            Thread.sleep(500);
-//            application.getRegistryHelper().fillRegitryform(null, null, s);
-//            Thread.sleep(300);
-//            application.getRegistryHelper().yesToNotyfication();
-//            Thread.sleep(50000);
-//        }
-//    }
+        Thread.sleep(10000000);
+    }
 
     // Шк Описи
     @Test
@@ -87,14 +87,13 @@ public void registryAS2var2() throws InterruptedException {
         Thread.sleep(100);
         application.getNavigation().ToNewRegistry();
         Thread.sleep(1000);
-        Randoms rnd = new Randoms();
-        application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
         application.getRegistryHelper().registryBarcode1();
         for (String s : DBArrays2.inventoryBarcode()) {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
+            Thread.sleep(2300);
             Assert.assertEquals(notification, "Данный штрих-код принадлежит описи. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -117,7 +116,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит документу. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -141,7 +140,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит МЛ. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -164,7 +163,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит ТЕ. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -187,7 +186,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит документу. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -210,7 +209,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит документу. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -233,7 +232,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит ФБ. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();
@@ -256,7 +255,7 @@ public void registryAS2var2() throws InterruptedException {
             System.out.println(s);
             application.getRegistryHelper().registryBarcode2(s);
             Thread.sleep(200);
-            String notification = application.getHelperBase().getTextContent(By.cssSelector("div.ant-form-explain"));
+            String notification = application.getRegistryHelper().getnotificationtext();
             Assert.assertEquals(notification, "Данный штрих-код принадлежит АК. Введите другое значение");
 //            application.getRegistryHelper().okeyToNotyfication();
 //            application.getRegistryHelper().okeyToNotyfication();

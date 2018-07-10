@@ -23,34 +23,34 @@ public class RegistryAS4 extends TestBase {
             if (z == 0) {
                 application.getRegistryHelper().documentType("1");
                 application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("02"));
-                Thread.sleep(5500);
+                Thread.sleep(4500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Сшивы документов дня");
                 application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
-                Thread.sleep(3500);
+                Thread.sleep(2500);
             }
             if (z == 1) {
                 application.getRegistryHelper().documentType("3");
                 application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("02"));
-                Thread.sleep(5500);
+                Thread.sleep(4500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Действующие документы");
                 application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
-                Thread.sleep(3500);
+                Thread.sleep(2500);
             }
             if (z == 2) {
                 application.getRegistryHelper().documentType("3");
                 String barcode = DBArrays3random.inventoryBarcodeinstate("04");
                 System.out.println("ШК описи"+barcode);
                 application.getRegistryHelper().addObject(barcode);
-                Thread.sleep(5500);
+                Thread.sleep(4500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
                 Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Действующие документы");
                 application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
-                Thread.sleep(3500);
+                Thread.sleep(2500);
             }
         }
     }
