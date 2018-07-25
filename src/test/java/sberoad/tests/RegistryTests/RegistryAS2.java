@@ -23,16 +23,16 @@ public class RegistryAS2 extends TestBase {
         application.getNavigation().ToNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
-        for (String s : DBArrays2.registryBarcodein12()) {
-            System.out.println(s);
-            Thread.sleep(500);
-            application.getRegistryHelper().registryBarcode2(s);
-            Thread.sleep(300);
-            String notification = application.getRegistryHelper().getnotificationtext();
-            Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование?ДаОтмена");
-            Thread.sleep(300);
-            application.getRegistryHelper().noToNotyfication();
-        }
+        String s = DBArrays2.registryBarcodeinStates("01,02");
+        System.out.println(s);
+        Thread.sleep(500);
+        application.getRegistryHelper().registryBarcode2(s);
+        Thread.sleep(300);
+        String notification = application.getRegistryHelper().getnotificationtext();
+        Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на редактирование?ДаОтмена");
+        Thread.sleep(300);
+        application.getRegistryHelper().noToNotyfication();
+
     }
 
     // реестры которые должны быть открыты на просмотр
@@ -44,7 +44,7 @@ public class RegistryAS2 extends TestBase {
         application.getNavigation().ToNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
-        String barcode = DBArrays3random.registryBarcodein37();
+        String barcode = DBArrays2.registryBarcodeinStates("03,04,05,06,07");
         System.out.println(barcode);
         application.getRegistryHelper().registryBarcode2(barcode);
         Thread.sleep(200);
@@ -52,9 +52,7 @@ public class RegistryAS2 extends TestBase {
         Assert.assertEquals(notification, "В системе уже имеется реестр с таким штрих-кодом. Открыть реестр на просмотр?ДаОтмена");
         application.getRegistryHelper().okeyToNotyfication();
         Thread.sleep(300);
-
         Thread.sleep(10000000);
-
     }
 
 
@@ -67,7 +65,7 @@ public class RegistryAS2 extends TestBase {
         application.getNavigation().ToNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
-        String barcode = DBArrays3random.registryBarcodein12();
+        String barcode = DBArrays2.registryBarcodeinStates("01,02");
         System.out.println(barcode);
         application.getRegistryHelper().registryBarcode2(barcode);
         Thread.sleep(200);

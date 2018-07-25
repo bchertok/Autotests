@@ -118,9 +118,8 @@ public class HelperBase {
 
 
     public String getinnerText(By locator) {
-        String txt = driver.findElement(locator).getAttribute("innerText");
         // System.out.println(txt);
-        return txt;
+        return driver.findElement(locator).getAttribute("innerText");
     }
 
 
@@ -137,7 +136,7 @@ public class HelperBase {
         return txt;
     }
 
-    public boolean isElementPresent(By locator) {
+    boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;

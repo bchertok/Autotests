@@ -1,9 +1,10 @@
 package sberoad.appmanager;
 
 public class DBArrays3random {
+    private static DB db1 = new DB();
     public static String documentBarcodeinstate(String states) {
         // действующие документы со статусами (перечислить)
-        DB db1 = new DB();
+
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -15,7 +16,6 @@ public class DBArrays3random {
     }
     public static String documentFromInventorystatecode(String docstatecode,String invstatecode) {
         // документ со статусом () находящийся в описи со статусом ()
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "                inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "                inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -32,7 +32,6 @@ public class DBArrays3random {
     // ШК электронного действующего документа
     public static String electronicdocumentBarcodeinstate(String states) {
         // действующие документы со статусами (перечислить)
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join DOCUMENT ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -43,7 +42,6 @@ public class DBArrays3random {
     }
     public static String inventoryBarcodeinstate(String states) {
         // описи со статусами (перечислить)
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join INVENTORY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join INVENTORYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -51,7 +49,6 @@ public class DBArrays3random {
     }
     public static String inventoryFromAbs(String states) {
         // описи со статусами (перечислить)
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join INVENTORY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join INVENTORYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -60,7 +57,6 @@ public class DBArrays3random {
     }
     public static String inventoryNotFromAbs(String states) {
         // описи со статусами (перечислить)
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join INVENTORY ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join INVENTORYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -69,7 +65,6 @@ public class DBArrays3random {
     }
     public static String dailybindingBarcodeinstate(String states) {
         // сшивы со статусами (перечислить)
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join DAILYBINDING ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
@@ -77,41 +72,33 @@ public class DBArrays3random {
     }
     public static String dossierBarcodeinstate(String states) {
         // заверш. делопроизводство документы со статусами (перечислить)
-        DB db1 = new DB();
         return db1.getRandomValue("select u.CODE, uz.CODE,ud.PID from BARCODEINFO u \n" +
                 "inner join DOSSIER ud on ud.PID=u.ENTITY_PID\n" +
                 "inner join DOCUMENTSTATE uz on ud.STATECODE_PID=uz.PID\n" +
                 "where uz.CODE in (" + states +")", "CODE");
     }
-    public static String registryBarcodein12() {
-        DB db1 = new DB();
-        return db1.getRandomValue("select u.CODE, uz.CODE,u.PID from BARCODEINFO u \n" +
-                "inner join REGISTRY ud on ud.PID=u.ENTITY_PID\n" +
-                "inner join REGISTRYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
-                "where uz.CODE in (01,02)", "CODE");
-    }
-    public static String registryBarcodein37() {
-        DB db1 = new DB();
-        return db1.getRandomValue("select u.CODE, uz.CODE,u.PID from BARCODEINFO u \n" +
-                "inner join REGISTRY ud on ud.PID=u.ENTITY_PID\n" +
-                "inner join REGISTRYSTATE uz on ud.STATECODE_PID=uz.PID\n" +
-                "where uz.CODE BETWEEN '03' and '07'", "CODE");
-    }
+
     public static String selectFromBarcodeinfoWhereEntityPid(String entity_pid) {
-        DB db1 = new DB();
         return db1.getRandomValue("select CODE from BARCODEINFO  \n" +
-                "where ENTITY_PID = " + entity_pid +" ", "CODE");
+                "where ENTITY_PID = '" + entity_pid +"' ", "CODE");
     }
     public static String selectFromBarcodeinfoWhereBARCODE(String barcode) {
-        DB db1 = new DB();
         return db1.getRandomValue("select ENTITY_PID from BARCODEINFO \n" +
                 "where CODE = '" + barcode +"' ", "ENTITY_PID");
     }
+    public static String selectEntityTypefromBARCODEinfo(String barcode) {
+        return db1.getRandomValue("select TABLE_NAME from ENTITYTYPE E \n" +
+                "                inner join BARCODEINFO U on U.ENTITY_TYPE_PID = E.PID\n" +
+                "                where U.CODE = '" + barcode +"'", "TABLE_NAME");
+    }
 
     public static String selectFromTABLEWhereEntityPid(String table,String entity_pid) {
-        DB db1 = new DB();
         return db1.getRandomValue("select * from "  + table + "  \n" +
-                "where PID = " + entity_pid +" ", "CODE");
+                "where PID = '" + entity_pid +"' ", "CODE");
+    }
+    public static String ifInventorywasdowloadfromABS(String table, String entity_pid) {
+        return db1.getRandomValue("select FROM_ABS from "  + table + "  \n" +
+                "where PID = '" + entity_pid +"' ", "FROM_ABS");
     }
 
 }

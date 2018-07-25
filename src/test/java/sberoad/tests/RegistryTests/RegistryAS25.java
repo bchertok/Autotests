@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import sberoad.appmanager.DBArrays2;
 import sberoad.appmanager.DBArrays3random;
+import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
 
 public class RegistryAS25 extends TestBase {
@@ -14,6 +15,10 @@ public class RegistryAS25 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        Randoms rnd = new Randoms();
+        application.getRegistryHelper().registryBarcode1();
+        String barcodeReg = rnd.randomBarcode();
+        application.getRegistryHelper().registryBarcode2(barcodeReg);
         application.getRegistryHelper().documentType("1");
         String document = DBArrays3random.documentBarcodeinstate("2");
         String dailyBinding = DBArrays3random.dailybindingBarcodeinstate("2");
@@ -47,6 +52,6 @@ public class RegistryAS25 extends TestBase {
         Thread.sleep(4000);
         application.getRegistryHelper().addObject(document);
         String notify = application.getRegistryHelper().getnotificationtext();
-        Assert.assertEquals(notify,"В реестре уже есть документ с таким штрих-кодом: "+document);
+        Assert.assertEquals(notify,"В описи, включенной в данный реестр, уже имеется документ с таким ШК: "+document);
     }
 }

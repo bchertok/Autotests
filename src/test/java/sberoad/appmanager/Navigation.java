@@ -24,5 +24,12 @@ public class Navigation extends HelperBase {
         Thread.sleep(1000);
         click(By.cssSelector("button.ant-btn.button___2TQZM"));
     }
-
+    public void ToNewTransportUnit() throws InterruptedException {
+        click(By.linkText("Сдать документы в архив"));
+        Thread.sleep(600);
+        click(By.linkText("ТЕ"));
+        Thread.sleep(600);
+        clickByCss("button.ant-btn.groupCreate___2QaCr.button___2TQZM");
+        Thread.sleep(800);
+    }
 }

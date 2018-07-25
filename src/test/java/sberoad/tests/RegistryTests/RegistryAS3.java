@@ -74,10 +74,11 @@ public class RegistryAS3 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        Thread.sleep(200);
         application.getRegistryHelper().documentType("1");
         Randoms random = new Randoms();
         Thread.sleep(500);
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             String barcode = random.randomBarcode();
             System.out.println(barcode);
             application.getRegistryHelper().addObject(barcode);

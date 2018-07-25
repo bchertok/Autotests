@@ -1,5 +1,6 @@
 package sberoad.appmanager;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class DB {
     public static Properties getProperties() {
         Properties properties = new Properties();
         try {
-            properties.load(DB.class.getClassLoader().getResourceAsStream("db.properties"));
+//            properties.load(DB.class.getClassLoader().getResourceAsStream("db.properties"));
+            properties.load(new FileInputStream("src/test/resources/db.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

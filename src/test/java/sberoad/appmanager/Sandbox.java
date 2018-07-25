@@ -4,23 +4,22 @@ public class Sandbox {
     public static void main(String[] args) {
 //        System.out.println(DBArrays2.registryPid().size());
 //        Randoms rnd = new Randoms();
-//        System.out.println(rnd.randomBarcode());
+//     System.out.println(rnd.randomBarcode());
 //        System.out.println(DBArrays2.documentBarcodeinstate("07"));
-//     System.out.println(DBArrays2.inventoryBarcodeinstate("04"));
-//    System.out.println(DBArrays2.documentBarcodeinstate("02"));
-        System.out.println(DBArrays3random.documentBarcodeinstate("02"));
-//        System.out.println(DBArrays3random.dailybindingBarcodeinstate("08"));
-//     System.out.println(DBArrays2.registryBarcodein37());
+// System.out.println(DBArrays2.inventoryBarcodeinstate("08"));
+    System.out.println(DBArrays2.documentBarcodeinstate("02"));
+//        System.out.println(DBArrays3random.documentBarcodeinstate("02"));
+//        System.out.println(DBArrays3random.dailybindingBarcodeinstate("02"));
+     System.out.println(DBArrays2.registryBarcodeinStates("01,02"));
 //     System.out.println(DBArrays2.dailybindingBarcodeinstate("02"));
 //        System.out.println(DBArrays2.dossierBarcodeinstate("1,2"));
 //        System.out.println(DBArrays2.fileboxBarcode());
 
-//      System.out.println(DBArrays3random.documentFromInventorystatecode("02","04"));
-
-//        System.out.println(DBArrays3random.electronicdocumentBarcodeinstate("2"));
+//      System.out.println(DBArrays3random.documentFromInventorystatecode("06","06"));
+//
+//   System.out.println(DBArrays3random.electronicdocumentBarcodeinstate("2"));
 //        System.out.println(DBArrays3random.inventoryFromAbs("4"));
 //        System.out.println(DBArrays3random.inventoryNotFromAbs("3"));
-
 
 
     }

@@ -19,6 +19,9 @@ public class RegistryAS22 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        application.getRegistryHelper().registryBarcode1();
+        String barcodeReg = rnd.randomBarcode();
+        application.getRegistryHelper().registryBarcode2(barcodeReg);
         application.getRegistryHelper().documentType("1");
         // ШК документа в статусе 2
         String docabs1 = DBArrays3random.documentBarcodeinstate("02");
@@ -50,6 +53,9 @@ public class RegistryAS22 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        application.getRegistryHelper().registryBarcode1();
+        String barcodeReg = rnd.randomBarcode();
+        application.getRegistryHelper().registryBarcode2(barcodeReg);
         application.getRegistryHelper().documentType("1");
         // ШК документа в статусе 2
         String docabs1 = DBArrays3random.dailybindingBarcodeinstate("02");
@@ -143,6 +149,7 @@ public class RegistryAS22 extends TestBase {
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
         application.getRegistryHelper().documentType("2");
+        Thread.sleep(200);
         application.getRegistryHelper().addDossier();
         Thread.sleep(4000);
         // получаем айди correspondence в этом реестре
@@ -170,6 +177,9 @@ public class RegistryAS22 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        application.getRegistryHelper().registryBarcode1();
+        String barcodeReg = rnd.randomBarcode();
+        application.getRegistryHelper().registryBarcode2(barcodeReg);
         application.getRegistryHelper().documentType("1");
         String invabs1 = DBArrays3random.inventoryFromAbs("04");
         System.out.println("шк описи" + invabs1);
@@ -210,6 +220,9 @@ public class RegistryAS22 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         application.getNavigation().ToNewRegistry();
+        application.getRegistryHelper().registryBarcode1();
+        String barcodeReg = rnd.randomBarcode();
+        application.getRegistryHelper().registryBarcode2(barcodeReg);
         application.getRegistryHelper().documentType("1");
         String invabs1 = DBArrays3random.inventoryNotFromAbs("04");
         System.out.println("шк описи" + invabs1);

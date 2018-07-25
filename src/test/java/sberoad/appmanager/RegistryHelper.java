@@ -90,7 +90,7 @@ public class RegistryHelper extends HelperBase {
 
     public void deleteButton() throws InterruptedException {
         clickByxpath("(//button[@type='button'])[5]");
-        Thread.sleep(300);
+        Thread.sleep(700);
         click(By.cssSelector("div.ant-notification-notice-message > button.ant-btn.button___2TQZM.ant-btn-primary"));
 
     }
@@ -120,10 +120,13 @@ public class RegistryHelper extends HelperBase {
 
     public void addDossier() throws InterruptedException {
         spisok("кн", By.xpath("//div[@id='root']/div/div[2]/div/form/div[3]/div/div/div[2]/div/span/div/div"));
+Thread.sleep(200);
         clickByxpath("//div[@id='root']/div/div[2]/div/form/div[4]/div[2]/div/span/div/div/div/div");
         Thread.sleep(50);
         clickByxpath("//div[4]/div/div/div/ul/li");
+        Thread.sleep(50);
         type("3", By.name("documentsToAddCount"));
+        Thread.sleep(50);
         clickByxpath("(//button[@type='button'])[3]");
         type("1", By.xpath("(//input[@value=''])[12]"));
         clickByxpath("//div[@id='root']/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[4]/div/div/div/span/span/div/span");

@@ -1,14 +1,31 @@
 package sberoad.appmanager;
 
 
-import java.util.ArrayList;
+import sberoad.exception.FailedDocumentStateException;
+
+
+import java.util.Random;
 
 public class Sandbox2 {
-    public static void main(String[] args) {
-        String invabs1 = DBArrays3random.inventoryFromAbs("04");
-        String invID = DBArrays3random.selectFromBarcodeinfoWhereBARCODE(invabs1);
+    private static Random randomGenerator;
 
-        ArrayList docsates = (ArrayList) DBArrays2.documentStatewithINVENTORY(invID);
-        System.out.println(docsates);
+    public static void main(String[] args) throws FailedDocumentStateException {
+        System.out.println(DBArraysTEML.registryBarcodeinStatesAndNotinTEML("01,02"));
+        System.out.println(DBArraysTEML.registryBarcodeinStatesInTEML("01,02"));
+//        regstate = DBArrays2.registryStateFromDB(barcodeReg);
+//        Assert.assertEquals(regstate, "02");
+
+
+        System.out.println(DBArraysTEML.TEinStatesWithorWithoutTE("1", "is null"));
+        RandomFromList rnd = new RandomFromList(DBArraysTEML.TEinStatesWithorWithoutTE("1", "is null"));
+        System.out.println(rnd.randomElementfromList());
+
+        String id = (String) rnd.randomElementfromList();
+        System.out.println(DBArraysTEML.listWithRegistryInTE(id));
+
+        // транспортаня единица с дочерними ТЕ
+        // без дочерних те
+        // в составе больше 1 объекта
+        // меньше 1 объекта
     }
 }
