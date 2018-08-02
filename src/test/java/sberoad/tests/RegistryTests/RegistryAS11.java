@@ -13,7 +13,7 @@ public class RegistryAS11 extends TestBase {
         // перепривязка в реестр из описи документа в статусе 1
         Thread.sleep(300);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(500);
         application.getRegistryHelper().registryBarcode1();
         Randoms rnd = new Randoms();
@@ -44,7 +44,7 @@ public class RegistryAS11 extends TestBase {
         // из реестра 01-02 в реестр документ со статусом 05
         Thread.sleep(300);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(500);
         application.getRegistryHelper().registryBarcode1();
         Randoms rnd = new Randoms();

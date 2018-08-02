@@ -13,7 +13,7 @@ public class RegistryAS4 extends TestBase {
     public void registryAS4new() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(500);
         Thread.sleep(500);
         for (int i = 0; i < 20; i++) {

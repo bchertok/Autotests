@@ -1,16 +1,10 @@
 package sberoad.tests.RegistryTests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sberoad.appmanager.DB;
 import sberoad.appmanager.DBArrays2;
-import sberoad.appmanager.DBArrays3random;
 import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class RegistryAS2 extends TestBase {
@@ -20,7 +14,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
         String s = DBArrays2.registryBarcodeinStates("01,02");
@@ -41,7 +35,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
         String barcode = DBArrays2.registryBarcodeinStates("03,04,05,06,07");
@@ -62,7 +56,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
         String barcode = DBArrays2.registryBarcodeinStates("01,02");
@@ -83,7 +77,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
         for (String s : DBArrays2.inventoryBarcode()) {
@@ -105,7 +99,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
@@ -129,7 +123,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
@@ -152,7 +146,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
@@ -175,7 +169,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
@@ -198,7 +192,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
@@ -221,7 +215,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
@@ -244,7 +238,7 @@ public class RegistryAS2 extends TestBase {
         Thread.sleep(200);
         application.getNavigation().startPage();
         Thread.sleep(100);
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());

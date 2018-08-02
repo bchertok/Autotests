@@ -19,7 +19,6 @@ public void fillDailyBindingForm(String bindingType) {
 }
 
 public void finishForm () throws InterruptedException {
-
         clickByxpath("//button[@type='button']");
         Thread.sleep(500);
         clickByxpath("(//button[@type='button'])[4]");

@@ -20,7 +20,7 @@ public class Registry extends TestBase {
         Randoms rnd = new Randoms();
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -56,7 +56,7 @@ public class Registry extends TestBase {
         Randoms rnd = new Randoms();
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -92,7 +92,7 @@ public class Registry extends TestBase {
         Randoms rnd = new Randoms();
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);

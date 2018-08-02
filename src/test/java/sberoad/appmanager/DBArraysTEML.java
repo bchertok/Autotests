@@ -32,12 +32,14 @@ public class DBArraysTEML {
                 "uz.PID is not null\n" +
                 "and ub.CODE in (" + states + ")", "CODE");
     }
+
     public static List<String> listWithRegistryInTE(String teid) {
         //реестры включенные в ТЕ
         return db1.getAllValue("    Select t.REGISTRY_PID from TRANSPORTUNITITEM t\n" +
-                "    Where t.TRANSPORTUNIT_PID = '"+teid+"'\n" +
+                "    Where t.TRANSPORTUNIT_PID = '" + teid + "'\n" +
                 "  AND t.REGISTRY_PID is not null", "REGISTRY_PID");
     }
+
     public static String TransportUnitState(String teid) {
         //реестры включенные в ТЕ
         return db1.getRandomValue("select o.STATECODE_PID from \n" +
@@ -47,7 +49,7 @@ public class DBArraysTEML {
                 "WHERE rownum = 1", "STATECODE_PID");
     }
 
-    public static List<String> TEinStatesWithorWithoutTE(String states, String nullornot) throws FailedDocumentStateException {
+    public static List<String> TEinStatesWithorWithoutTE(String states, String nullornot, boolean inWaybill) throws FailedDocumentStateException {
         // надо написать статус одной цифрой "2" и is null или is not null на дочерние ТЕ
         String zzz;
         ArrayList<String> result = new ArrayList<>();
@@ -62,6 +64,16 @@ public class DBArraysTEML {
         List<String> pid = db1.getAllValue("select DISTINCT u.pid from TRANSPORTUNIT u\n" +
                 "INNER join TRANSPORTUNITITEM t on t.TRANSPORTUNIT_PID = u.PID\n" +
                 "WHERE t.SUBTRANSPORTUNIT_PID " + nullornot, "PID");
+
+        if (inWaybill) {
+            // все элементы которые есть в waybill
+            pid.removeIf((s) -> !inWaybill().contains(s));
+
+        } else {
+            // все элементы которых нет в waybill
+            pid.removeAll(inWaybill());
+        }
+
 
         for (String s : pid) {
             zzz = db1.getRandomValue("select o.STATECODE_PID from \n" +
@@ -116,6 +128,11 @@ public class DBArraysTEML {
         System.out.println(result);
         System.out.println(pid);
         throw new FailedDocumentStateException("Неверно указан аргумент");
+    }
+
+    private static List<String> inWaybill() {
+
+        return db1.getAllValue("select TRANSPORTUNIT_PID from WAYBILLITEM ", "TRANSPORTUNIT_PID");
     }
 }
 

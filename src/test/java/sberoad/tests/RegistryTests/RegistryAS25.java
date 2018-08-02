@@ -14,7 +14,7 @@ public class RegistryAS25 extends TestBase {
     public void registryAS25var1() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Randoms rnd = new Randoms();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
@@ -44,7 +44,7 @@ public class RegistryAS25 extends TestBase {
     public void registryAS25var2() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         String document = DBArrays3random.documentFromInventorystatecode("01", "04");
         String inventory = DBArrays3random.selectFromBarcodeinfoWhereEntityPid(DBArrays2.ifDocumenthaveInventory(document));
         application.getRegistryHelper().documentType("1");

@@ -20,7 +20,7 @@ public class RegistryAS16 extends TestBase {
     public void registryAddObjectVar1() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(2000);
         application.getRegistryHelper().documentType("1");
         int i = 1;

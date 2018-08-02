@@ -7,16 +7,13 @@ import sberoad.appmanager.DBArrays3random;
 import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
 
-import static oracle.net.aso.C11.s;
-import static oracle.net.aso.C11.z;
-
 public class RegistryAS3 extends TestBase {
     // случайный ШК в поле ШК реестра АС3
     @Test
     public void registryAS3var1() throws InterruptedException {
         Thread.sleep(300);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Randoms random = new Randoms();
         Thread.sleep(1000);
         application.getRegistryHelper().registryBarcode1();
@@ -37,7 +34,7 @@ public class RegistryAS3 extends TestBase {
     public void registryAS3var2() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Randoms random = new Randoms();
         Thread.sleep(1000);
         application.getRegistryHelper().documentType("1");
@@ -73,7 +70,7 @@ public class RegistryAS3 extends TestBase {
     public void registryAS3var3() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(200);
         application.getRegistryHelper().documentType("1");
         Randoms random = new Randoms();
@@ -106,7 +103,7 @@ public class RegistryAS3 extends TestBase {
     public void registryAS3var4() throws InterruptedException {
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().documentType("1");
         Thread.sleep(500);
         for (int i = 0; i < 20; i++) {

@@ -3,12 +3,9 @@ package sberoad.tests.RegistryTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sberoad.appmanager.DBArrays3random;
-import sberoad.appmanager.Randoms;
 import sberoad.tests.TestBase;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class RegistryAS24 extends TestBase {
@@ -20,7 +17,7 @@ public class RegistryAS24 extends TestBase {
         // Добавляем действующий документ и пытаемся добавить по ШК Сшив
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(300);
         application.getRegistryHelper().documentType("1");
         application.getRegistryHelper().addObject(DBArrays3random.documentBarcodeinstate("2"));
@@ -39,7 +36,7 @@ public class RegistryAS24 extends TestBase {
         // Добавляем сшив и пытаемся добавить по ШК действующий док и опись
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(300);
         application.getRegistryHelper().documentType("3");
         application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("2"));

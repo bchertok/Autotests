@@ -10,7 +10,7 @@ public class RegistryAS1 extends TestBase {
     public void registryAS1() throws InterruptedException {
         String subdivision = "г.Санкт-Петербург Доп.офис №9055/01108";
        // application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         Thread.sleep(2000);
 //        application.getRegistryHelper().fillRegitryform("действующие", subdivision, null);
 //        application.getRegistryHelper().openObjectSearch();

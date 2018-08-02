@@ -18,7 +18,7 @@ public class RegistryAS22 extends TestBase {
         // удаление документа загруженного из АБС
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -52,7 +52,7 @@ public class RegistryAS22 extends TestBase {
         // Удаление Сшива загруженного из АБС
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -80,7 +80,7 @@ public class RegistryAS22 extends TestBase {
         // Удаление Сшива добавленного вручную
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -112,7 +112,7 @@ public class RegistryAS22 extends TestBase {
         // Удаление корреспонденции добавленной вручную
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -144,7 +144,7 @@ public class RegistryAS22 extends TestBase {
         // Удаление делопроизводства добавленной вручную
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -176,7 +176,7 @@ public class RegistryAS22 extends TestBase {
         // Удаление описи загруженной из АБС
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
@@ -219,7 +219,7 @@ public class RegistryAS22 extends TestBase {
         // Удаление описи добавленной вручную
         Thread.sleep(200);
         application.getNavigation().startPage();
-        application.getNavigation().ToNewRegistry();
+        application.getNavigation().toNewRegistry();
         application.getRegistryHelper().registryBarcode1();
         String barcodeReg = rnd.randomBarcode();
         application.getRegistryHelper().registryBarcode2(barcodeReg);
