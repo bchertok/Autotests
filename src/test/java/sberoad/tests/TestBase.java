@@ -1,7 +1,7 @@
 package sberoad.tests;
 
 
-import org.openqa.selenium.remote.BrowserType;
+
 import org.testng.annotations.*;
 import sberoad.appmanager.ApplicationManager;
 

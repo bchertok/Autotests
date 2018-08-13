@@ -18,13 +18,15 @@ public class TransportunitAS9 extends TestBase{
         String barcodeReg = DBArraysTEML.registryBarcodeinStatesAndNotinTEML("01");
         System.out.println(barcodeReg);
         application.getTransportunitHelper().addItem(barcodeReg);
+        Thread.sleep(1000);
         String regstate = DBArrays2.registryStateFromDB(barcodeReg);
         Assert.assertEquals(regstate, "02");
-        RandomFromList rnd = new RandomFromList(DBArraysTEML.TEinStatesWithorWithoutTE("1", "is null",false));
+        RandomFromList rnd = new RandomFromList(DBArraysTEML.TEinStatesWithorWithoutTE("1", "is null",false,false));
         String id = (String) rnd.randomElementfromList();
         String barcodeTE = DBArrays3random.selectFromBarcodeinfoWhereEntityPid(id);
         System.out.println(barcodeTE);
         application.getTransportunitHelper().addItem(barcodeTE);
+        Thread.sleep(1000);
         String testate = DBArraysTEML.TransportUnitState(id);
         Assert.assertEquals(testate, "178251");
     }

@@ -14,7 +14,7 @@ public class WaybillAS12 extends TestBase {
     private Randoms rnd = new Randoms();
     @Test
     public void AS12() throws InterruptedException {
-        application.getNavigation().toNewWaybill();
+        application.getNavigation().toNewTransportUnit();
         as12help(DBArrays2.dailybindingBarcode());
         as12help(DBArrays2.inventoryBarcode());
         as12help(DBArrays2.documentBarcode());
@@ -31,7 +31,7 @@ public class WaybillAS12 extends TestBase {
         Thread.sleep(2500);
         application.getTransportunitHelper().addItem((String) rnd.randomElementfromList());
         Assert.assertEquals(application.getRegistryHelper().getnotificationtext(),
-                "Для добавления в маршрутный лист доступны только реестры и транспортные единицы");
+                "Для добавления в транспортную еденицу доступны только реестры и транспортные единицы");
     }
 
 

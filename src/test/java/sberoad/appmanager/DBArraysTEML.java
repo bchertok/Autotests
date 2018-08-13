@@ -49,7 +49,7 @@ public class DBArraysTEML {
                 "WHERE rownum = 1", "STATECODE_PID");
     }
 
-    public static List<String> TEinStatesWithorWithoutTE(String states, String nullornot, boolean inWaybill) throws FailedDocumentStateException {
+    public static List<String> TEinStatesWithorWithoutTE(String states, String nullornot, boolean inWaybill, boolean inotherTE) throws FailedDocumentStateException {
         // надо написать статус одной цифрой "2" и is null или is not null на дочерние ТЕ
         String zzz;
         ArrayList<String> result = new ArrayList<>();
@@ -72,6 +72,13 @@ public class DBArraysTEML {
         } else {
             // все элементы которых нет в waybill
             pid.removeAll(inWaybill());
+        }
+
+
+        if (inotherTE) {
+            pid.removeIf((s) -> !inotherTE().contains(s));
+        } else {
+            pid.removeAll(inotherTE());
         }
 
 
@@ -134,5 +141,27 @@ public class DBArraysTEML {
 
         return db1.getAllValue("select TRANSPORTUNIT_PID from WAYBILLITEM ", "TRANSPORTUNIT_PID");
     }
+
+    private static List<String> inotherTE() {
+
+        return db1.getAllValue("select SUBTRANSPORTUNIT_PID from TRANSPORTUNITITEM\n" +
+                "WHERE SUBTRANSPORTUNIT_PID is not null", "SUBTRANSPORTUNIT_PID");
+    }
+
+    public static String reginTE (String barcode) {
+        // вводим ШК ТЕ, получаем входящие в неё реестры
+        return db1.getRandomValue("   Select t.REGISTRY_PID from TRANSPORTUNITITEM t\n" +
+                "        INNER join BARCODEINFO u on u.ENTITY_PID = t.TRANSPORTUNIT_PID\n" +
+                "        where u.CODE in ('"+barcode+"')", "REGISTRY_PID");
+    }
+
+    public static String tefromTransportunit (String barcode) {
+        // Вводим ШК ТЕ, получаем айди ТЕ из таблицы TRANSPORTUNIT
+        return db1.getRandomValue(" Select t.PID from TRANSPORTUNIT t\n" +
+                "    INNER JOIN BARCODEINFO u on u.ENTITY_PID = t.PID\n" +
+                "    where u.CODE in ('"+barcode+"')", "PID");
+    }
+
+
 }
 

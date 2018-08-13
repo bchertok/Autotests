@@ -17,7 +17,7 @@ public class Sandbox {
 //      System.out.println(DBArrays3random.documentFromInventorystatecode("06","06"));
 //
 //   System.out.println(DBArrays3random.electronicdocumentBarcodeinstate("2"));
-//        System.out.println(DBArrays3random.inventoryFromAbs("4"));
+//        System.out.println(DBArrays3random.inventoryFromAbs("7"));
 //        System.out.println(DBArrays3random.inventoryNotFromAbs("3"));
 
 

@@ -2,40 +2,46 @@ package sberoad.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class Navigation extends HelperBase {
 
     Navigation(WebDriver driver) {
         super(driver);
     }
+private Locators locators = new Locators(driver);
 
     public void startPage() throws InterruptedException {
         Thread.sleep(200);
         driver.get("http://sb-oad-test:8050/");
+        PageFactory.initElements(driver,this);
     }
 
-    public void ToRegistryList() {
-        click(By.linkText("Функции системы"));
-        click(By.linkText("Реестр"));
+    public void ToRegistryList() throws InterruptedException {
+        System.out.println(locators.documentToArchive.getSize());
+        locators.documentToArchive.click();
+        Thread.sleep(500);
     }
+
+
 
     public void toNewRegistry() throws InterruptedException {
-        click(By.linkText("Сдать документы в архив"));
-        Thread.sleep(1000);
+        locators.documentToArchive.click();
+
         click(By.cssSelector("button.ant-btn.button___2TQZM"));
     }
 
     public void toNewTransportUnit() throws InterruptedException {
-        click(By.linkText("Сдать документы в архив"));
-        Thread.sleep(600);
+        locators.documentToArchive.click();
+
         click(By.linkText("ТЕ"));
-        Thread.sleep(600);
+
         clickByCss("button.ant-btn.groupCreate___2QaCr.button___2TQZM");
-        Thread.sleep(800);
+
     }
 
     public void toNewWaybill() throws InterruptedException {
-        click(By.linkText("Сдать документы в архив"));
+        locators.documentToArchive.click();
         Thread.sleep(600);
         click(By.linkText("МЛ"));
         Thread.sleep(600);

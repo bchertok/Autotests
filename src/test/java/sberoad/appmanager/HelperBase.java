@@ -2,9 +2,11 @@ package sberoad.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
-import java.io.IOException;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
+
 
 public class HelperBase {
     final WebDriver driver;
@@ -60,7 +62,11 @@ public class HelperBase {
         actions.perform();
     }
 
-    
+    void ctrlV(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.LEFT_CONTROL ,"v" );
+        actions.perform();
+    }
 
     void click(By locator) {
         driver.findElement(locator).click();
@@ -69,6 +75,12 @@ public class HelperBase {
     String text(By locator) {
         String text = driver.findElement(locator).getText();
         return text;
+    }
+
+    public void waitforrecivetheclick() {
+        WebDriverWait wait = new WebDriverWait(driver, 5/*seconds*/);
+        WebElement element = driver.findElement(By.cssSelector("div.ant-spin-nested-loading.spin___2qxqr"));
+        wait.until(stalenessOf(element));
     }
 
     void clickByxpath(String xpath) {
@@ -115,7 +127,11 @@ public class HelperBase {
         }
         return txt;
     }
-
+//    public void shoot() throws IOException
+//    {
+//        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(screenshot, new File("screen.png"));
+//    }
 
     public String getinnerText(By locator) {
         // System.out.println(txt);

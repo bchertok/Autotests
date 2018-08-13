@@ -23,10 +23,10 @@ public class RegistryAS4 extends TestBase {
             if (z == 0) {
                 application.getRegistryHelper().documentType("1");
                 application.getRegistryHelper().addObject(DBArrays3random.dailybindingBarcodeinstate("02"));
-                Thread.sleep(4500);
+               Thread.sleep(4500);
                 System.out.println(application.getRegistryHelper().getdocumentType());
-                Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Сшивы документов дня");
-                application.getRegistryHelper().chekBoxAll();
+               Assert.assertEquals(application.getRegistryHelper().getdocumentType(), "Сшивы документов дня");
+               application.getRegistryHelper().chekBoxAll();
                 application.getRegistryHelper().deleteButton();
                 Thread.sleep(2500);
             }

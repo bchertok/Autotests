@@ -216,7 +216,7 @@ public class RegistryAS2 extends TestBase {
         application.getNavigation().startPage();
         Thread.sleep(100);
         application.getNavigation().toNewRegistry();
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
         Randoms rnd = new Randoms();
         application.getRegistryHelper().documentType(rnd.randomNumberOfDocumentType());
         application.getRegistryHelper().registryBarcode1();
