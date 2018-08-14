@@ -34,13 +34,10 @@ public class Dataprovider {
             o[4] = code;
             return o;
         }).collect(Collectors.toList()).iterator();
-
     }
 
     @Test(dataProvider = "data1")
-
     public void RandomTest(String userName, String password, String phone, String email, String code) throws IOException {
         System.out.println(String.format("%s %s %s %s %s", userName, password, phone, email, code));
-
     }
 }

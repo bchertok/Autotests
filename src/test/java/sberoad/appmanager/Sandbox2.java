@@ -13,7 +13,6 @@ public class Sandbox2 {
         System.out.println(DBArraysTEML.registryBarcodeinStatesAndNotinTEML("02"));
         System.out.println(DBArraysTEML.registryBarcodeinStatesAndNotinTEML("02"));
         System.out.println(DBArraysTEML.registryBarcodeinStatesAndNotinTEML("02"));
-
         System.out.println(DBArraysTEML.registryBarcodeinStatesInTEML("01,02"));
 //        regstate = DBArrays2.registryStateFromDB(barcodeReg);
 //        Assert.assertEquals(regstate, "02");
