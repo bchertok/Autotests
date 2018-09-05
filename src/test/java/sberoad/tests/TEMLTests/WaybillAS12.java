@@ -2,7 +2,6 @@ package sberoad.tests.TEMLTests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sberoad.appmanager.DBArrays;
 import sberoad.appmanager.DBArrays2;
 import sberoad.appmanager.RandomFromList;
 import sberoad.appmanager.Randoms;
