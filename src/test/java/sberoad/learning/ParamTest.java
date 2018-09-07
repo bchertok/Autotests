@@ -1,5 +1,7 @@
 package sberoad.learning;
 
+import java.util.ArrayList;
+
 public class ParamTest {
     public static void main(String[] args) {
 // Тест 1: методы не могут видоизменять числовые параметры

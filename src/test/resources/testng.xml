@@ -2,45 +2,27 @@
 
 <suite name="TestAll">
 
-    <test name="subdivision">
+    <test name="test1">
+    <classes>
+        <class name="sberoad.tests.TEMLTests.TransportunitAS9" />
+    </classes>
+</test>
+
+    <test name="test2">
         <classes>
-            <class name="sberoad.tests.CatalogSubdivision" />
+            <class name="sberoad.tests.RegistryTests.Registry" />
         </classes>
     </test>
 
-    <test name="archive">
+    <test name="test3">
         <classes>
-            <class name="sberoad.tests.CatalogArchive" />
+            <class name="sberoad.tests.RegistryTests.RegistryAS4" />
         </classes>
     </test>
 
-    <test name="businessUnit">
+    <test name="result">
         <classes>
-            <class name="sberoad.tests.CatalogBuisnessUnit" />
-        </classes>
-    </test>
-
-    <test name="findDocumentHelper">
-        <classes>
-            <class name="sberoad.tests.FindDocumentHelper" />
-        </classes>
-    </test>
-
-    <test name="dailyBinding">
-        <classes>
-            <class name="sberoad.tests.DailyBinding" />
-        </classes>
-    </test>
-
-    <test name="RegistryAS1">
-        <classes>
-            <class name="sberoad.tests.RegistryTests.RegistryAS1" />
-        </classes>
-    </test>
-
-    <test name="RegistryAS2">
-        <classes>
-            <class name="sberoad.tests.RegistryTests.RegistryAS2" />
+            <class name="sberoad.Main" />
         </classes>
     </test>
 

@@ -1,7 +1,14 @@
 package sberoad.generators;
 
+import jdk.nashorn.internal.ir.Terminal;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import javax.smartcardio.TerminalFactory;
+import javax.smartcardio.TerminalFactorySpi;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class Sandbox5 {
 
@@ -21,12 +28,12 @@ public class Sandbox5 {
 
     @Test
 
-    public void tryyy() throws InterruptedException {
-
+    public void tryyy() throws InterruptedException, IOException {
 
         auth(Auth.getDboAdminlog(), Auth.getDboAdminpas());
 
         auth(Auth.getSecurityAdminlog(), Auth.getSecurityAdminpas());
+
 
     }
 }

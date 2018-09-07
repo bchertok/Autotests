@@ -72,9 +72,8 @@ public class HelperBase {
         driver.findElement(locator).click();
     }
 
-    String text(By locator) {
-        String text = driver.findElement(locator).getText();
-        return text;
+    String gettext(By locator) {
+        return driver.findElement(locator).getText();
     }
 
     public void waitforrecivetheclick() {
@@ -134,7 +133,6 @@ public class HelperBase {
 //    }
 
     public String getinnerText(By locator) {
-        // System.out.println(txt);
         return driver.findElement(locator).getAttribute("innerText");
     }
 

@@ -2,7 +2,9 @@ package sberoad.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import sberoad.generators.AutoAllure;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
@@ -39,11 +41,13 @@ public class ApplicationManager {
         driver.findElement(By.xpath("//button")).click();
     }
 
-    public void stop() {
+    public void stop() throws IOException {
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
+            AutoAllure autoAllure = new AutoAllure();
+            autoAllure.autoReport();
         }
     }
 
